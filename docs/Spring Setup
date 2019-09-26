@@ -1,0 +1,234 @@
+Getting Started with Spring Boot
+Overview
+Spring Boot is the Java Stack platform for building Java applications. It provides a rapid application development platform that gets your application running right out of the box. Behavior is added through the use of "starter" dependencies and the Spring Boot default auto-configuration can be extended, enhanced or overridden in powerful ways to meet the needs of any enterprise Java application.
+
+With Spring Boot, new applications can be spun up quickly, implemented with simple patterns, and published easily. As a result, Spring Boot applications can be smaller,more modular, and more tightly focused to a single problem domain than was possible with previous Java platforms. Moreover, using REST and HTTP, new Spring Boot applications can be easily integrated with legacy applications to create modular, service-oriented systems. Although we do not necessarily advocate the development of micro-services (mainly due to the overloaded nature of the term and because the definition of micro-services varies throughout the industry), we do recommend that your Java web services are built no larger than they need to be. The old practice of throwing new functionality into an existing application simply to save time setting up and deploying a new the project is no longer a valid excuse for building a massive monolithic system.
+
+Keep your application no bigger than it needs to be. Follow the simple patterns advocated by the Stack. Integrate your application with other services using the native protocols of the web. Do this, and your application will reward you with a light and easy maintenance experience. If you try to make one application fit all of your problem domains, you may well learn first-hand the high cost of designing for complexity.
+
+While Spring Boot supports alternate build types we still recommend using Maven to define and build your Spring Boot application. Maven defines the project meta-data that sets up your project's build, reporting, documentation, testing, and deployment. Maven's maturity, dependency management, broad plugin ecosystem, and project model continue to make it one of the most popular project comprehension tools available. All major IDEs provide rich integration with Maven. Maven is configured by default conventions, allowing it to be used with minimal configuration. It can also be extended in powerful ways using build lifecycle extensions, plugin executions, profiles, and more.
+
+Maven Project Structure
+According to default conventions, Maven expects a typical Java project to be structured as follows:
+
+sample-project/
+├── pom.xml
+└── src/
+    ├── main/
+    │   ├── java/
+    │   └── resources/
+    └── test/
+        ├── java/
+        └── resources/
+The pom.xml file is the only required file in any Maven project.
+The src/main/java folder is where .java source files are expected to reside.
+The src/main/resources folder is where classpath resource files to be packaged with the final artifact are expected to reside.
+The src/test/java folder is where .java unit and integration test source files are expected to reside.
+The src/test/resources folder is where classpath resource files to be used by unit and integration tests are expected to reside.
+Additional resource folders may be defined based on packaging type. For example, web applications using the war packaging type will define an additional src/main/webapp resource folder.
+Custom source and resource folders can be defined based on the needs of the project. For example, a project having .groovy source files might define the additional source folders src/main/groovy and src/test/groovy.
+A Simple Java Project POM
+The most basic project object model (POM) can be described as in the following simple XML. Create a folder for your new project and create the following file:
+
+pom.xml:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>sample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+</project>
+The XML namespace and schema information at the top of the file is optional but highly recommended as it will help an IDE perform code completion and XML schema validation on the POM to ensure that it is well-formed and valid.
+The POM modelVersion is likewise optional but recommended as it instructs the Maven runtime which model version to use when reading the POM.
+The groupId is required and should be a universally unique project namespace. It is generally recommended that this value be the fully-qualified package name of the project in order to distinguish it from other projects with a similar name.
+The artifactId is required and is the name of the artifact to be produced. It must be unique within the scope of the project groupId.
+The version is required and represents the current version of the artifact that will be produced by the project build.
+The packaging determines the type of artifact to be produced and will default to the jar packaging type if not supplied. The packaging type determines the default lifecycle and goal executions that will be executed as part of the build process. Maven supports numerous packaging types. Additional or custom packaging types can be defined via Maven extensions and plugins.
+The Main Class
+Like any Java application, we need a main class. Create the following Java source file at the location indicated:
+
+src/main/java/org/example/Main.java:
+
+package org.example;
+
+public class Main
+{
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+Now, we are ready to build our project. From a terminal, cd into the project folder and run the following command:
+
+$ mvn clean install
+The above command will download any external dependencies necessary for performing all build operations. The clean command invokes a special build lifecycle for deleting any temporary build artifacts left over from a previous build. The install command indicates that Maven should run all phases from the default build lifecycle up to and including the install phase. Any Maven goals bound to those phases will be executed, including compilation of project sources, packaging the jar artifact, and installing it and the pom.xml into the local repository. By default all build artifacts are installed under the folder ${user.home}/.m2/repository. You can see from the output at the end of the Maven build log that it has installed sample-1.0-SNAPSHOT.jar and sample-1.0-SNAPSHOT.pom (renamed from pom.xml into the local Maven repository).
+
+Also, you will notice that there is now a target folder in your project directory. This folder contains all of the files generated during the Maven build. The final product of the build is the file sample-1.0-SNAPSHOT.jar.
+
+(For a full description of the default Maven lifecycle, see the Maven Lifecycle Reference.)
+
+Now that the project artifact is built, you can execute the Main class:
+
+$ java -cp target/sample-1.0-SNAPSHOT.jar org.example.Main
+You should see the following output:
+
+Hello, World!
+Using Plugins to Customize the Build
+In the preceding example, the project produces only one artifact: a jar file named sample-1.0-SNAPSHOT.jar that contains the code compiled from the sources under src/main/java and any classpath resources found under src/main/resources. Furthermore, the project declares no dependencies and performs no tests. The advantages of Maven for such a project are minimal.
+
+However, as we add dependencies for additional functionality to the project, as we define additional artifacts to be produced, and as we write tests to be executed as part of the build, the value of Maven becomes quickly apparent.
+
+Adding Functionality
+We are now going to convert our simple "Hello, World!" example into a Spring MVC embedded web service using Spring Boot dependencies and plugins.
+
+Paste the following source code into Main.java.
+
+package org.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Starts up an embedded web application on port 8080 that displays the
+ * simple message, "Hello, World!".
+ */
+@RestController
+@SpringBootApplication
+public class Main
+{
+    /**
+     * Starts up the Spring application.
+     *
+     * @param args Command-line arguments to the Spring application.
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+
+    /**
+     * Returns a "Hello, World!" message from the root ('/') application
+     * endpoint.
+     *
+     * @return the message
+     */
+    @RequestMapping
+    public String getMessage() {
+        return "Hello, World!";
+    }
+}
+Our Main class now starts up a SpringApplication with a single Spring MVC endpoint that returns the message "Hello, World!". From this starting point, our very simple application could easily be extended to become a full featured web service using the features of Spring Boot and the Spring Framework. However, if we attempt to re-build the project now, we will get compilation errors because we have not yet told Maven that we have dependencies on these libraries.
+
+To declare our dependencies, add the following to the pom.xml file:
+
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.1.RELEASE</version>
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+In the above XML snippet, we have defined this project to inherit configuration from the spring-boot-starter-parent. This allows us to take advantage of all the necessary configuration and dependency versions for a chosen version of the platform. Make sure to use the latest version of this in place of the1.5.1.RELEASE.
+
+We have declared our dependencies upon spring-boot-starter-web and spring-boot-starter-test. The last dependency we assign test scope because this dependency is not needed for compiling or running the main project sources--only for compiling and executing tests (which we will write later). We did not explicitly assign a scope to spring-boot-starter-web because all dependencies have compile scope by default.
+
+These dependencies, in their turn, declare dependencies upon other libraries, and some of those libraries may very well declare dependencies upon others. For example, by simply declaring our dependency upon spring-boot-starter-web, Maven will pull in additional compilation and runtime dependencies, giving us access to all the necessary Spring Boot, Spring Framework, Logback, Jackson, and Tomcat dependencies necessary to run our Main class as an embedded Spring MVC web service. These extra dependencies that we did not explicitly declare in our pom.xml are called transitive dependencies because they are resolved transitively during build execution. The spring-boot-starter-test dependency brings in additional test dependencies, each of them having test scope because they transitively inherit the scope we gave to the explicitly declared test dependency.
+
+Next, we want to package our project as a single, executable jar. We also want to generate and package our Javadoc API and our sources so they can be made made available to those consuming our product.
+
+In order to create these additional jars, add the following build configuration to your pom.xml:
+
+<build>
+    <plugins>
+        <!-- Package as a Spring Boot Executable with the "boot" classifier -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>       
+    </plugins>
+</build>
+The spring-boot-maven-plugin will create a "bootable" jar that will contain all of the dependencies and configuration needed to start up our Spring MVC web service. A "bootable" jar is much easier to execute than non-bootable jars, because it doesn't require a shell or batch script to set up the classpath and it can be deployed as a single archive.
+
+When you are ready, re-build the project:
+
+$ mvn clean install
+Once the build is complete, if you now look at the contents of your target folder you will see four jar files:
+
+sample-1.0-SNAPSHOT.jar           -- The sample project jar
+sample-1.0-SNAPSHOT-boot.jar      -- The Spring "bootable" jar
+sample-1.0-SNAPSHOT-javadoc.jar   -- The Javadoc API jar
+sample-1.0-SNAPSHOT-sources.jar   -- The packaged sources
+Now you can execute the "bootable" jar:
+
+$ java -jar target/sample-1.0-SNAPSHOT-boot.jar
+If you then open a browser to http://localhost:8080, you should see the following output:
+
+Hello, World!
+Next, add the following integration test:
+
+src/test/java/org/example/MainTest.java:
+
+package org.example;
+
+import java.io.IOException;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
+
+import static org.junit.Assert.*;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+public class MainTest
+{    
+    @Value("${local.server.port}")
+    private int port;
+
+    @Test
+    public void test() throws IOException
+    {
+        ResponseEntity<String> entity = new RestTemplate()
+                .getForEntity("http://localhost:" + port, String.class);
+
+        assertEquals(HttpStatus.OK, entity.getStatusCode());
+        assertTrue("Wrong body:\n" + entity.getBody(),
+                entity.getBody().contains("Hello, World!"));
+    }
+}
+This integration test starts up the Spring Boot application and sends a GET request to localhost on whichever port the application is listening on. It then asserts that it got an HTTP 200 OK status and that the body of the response contains the message "Hello, World!".
+
+Note that in our @SpringBootTest annotation, we are asking the test to choose any available port. This can be very useful on a continuous build server in which you may not know which ports are available when your tests start up the web container.
+
+The maven-surefire plugin is already bound to the default Maven lifecycle's test phase, so it will execute the test automatically when you re-build.
+
+Next Steps
+If you want more detailed information about how Maven works and some of the core maven concepts then review these Maven Tutorials: [http://www.codetab.org/apache-maven-tutorial/]
+
