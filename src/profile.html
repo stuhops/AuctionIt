@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Climbing</title>
+  <title>User Profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../static/style.css" media="screen">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -15,7 +16,7 @@
 <div id="app">
 
   <nav class="navbar navbar-expand-md navbar-light">
-    <a class="navbar-brand" href="index.html"><img src="../data/logo/logo-med.png" style="height: 50px;"></a>
+    <a class="navbar-brand" href="profile.html"><img src="../data/logo/logo-med.png" style="height: 50px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,7 +43,8 @@
           </div>
         </li>
       </ul>
-      <button class="btn btn-success ml-auto mr-1">Cart</button>
+      <input class="ml-auto mr-1" type="text" placeholder="Search..">
+      <button type="submit"><i class="fa fa-search"></i></button>
     </div>
   </nav>
 
