@@ -177,3 +177,10 @@ input[type=submit]:hover {
     background-size: cover;
 }
 
+.timeLeft {
+    color: darkorange;
+}
+.bidNowText {
+    color: darkblue;
+}
+
