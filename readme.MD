@@ -26,3 +26,10 @@ System testing instructions:
 
     System testing is where the whole app is run from the beginning to the end of the system. Automation would be desired, similar to Unit tests. However, most of the testing will most likely be performed by the developers as each feature is added to functionality.
 
+Protoypes:
+
+    There are currently three protoypes in the folder. There are the Hi, Medium and Low prototypes there. You can access as you wish, the high is a video, the medium is a powerpoint and the low is a pdf.
+
+How to run:
+
+    The current directories are set up and a working prototype is there. To access it, clone into the master branch and then open the html files within your browser. You can accomplish this by using file explorer and going to the location where you cloned in to master, go into the src directory, find a html file you like, and drag onto the browser.
