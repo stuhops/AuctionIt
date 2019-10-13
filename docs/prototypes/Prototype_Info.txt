@@ -1,0 +1,7 @@
+There are currently three prototypes in /docs/prototypes. There are the High, Medium and Low prototypes. 
+You can access as you wish; the high fidelity is a video, the medium fidelity is a PowerPoint, and the 
+low fidelity is a pdf.
+
+The low fidelity PDF contains wireframe drawings of our web system.
+The medium fidelity PowerPoint contains future navigation bar functionality.
+The high fidelity video showcases our current template for our web system.
