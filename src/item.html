@@ -43,6 +43,8 @@
           <!--</div>-->
         <!--</li>-->
       <!--</ul>-->
+      <a type="button" class="nav nav-pills nav-items nav-link active" onclick="document.getElementById('explore').style.display='block'" >
+        Explore</a>
       <input class="ml-auto mr-1" type="text" placeholder="Search..">
       <button type="submit"><i class="fa fa-search"></i></button>
     </div>
@@ -106,5 +108,60 @@
     </div>
   </div>
 
+  <!-- The Modal (contains the explore modal) -->
+  <div id="explore" class="modal modal-sup">
+    <span onclick="document.getElementById('explore').style.display='none'" class="close close-sup" title="Close Modal"></span>
+    <div class="modal-content modal-content-sup animate">
+      <div class="container container-sup">
+        <h1>Explore</h1>
+        <p>Check out all the cool items up for auction!</p>
+        <hr class="hr-sup">
+
+        <div class="card-columns">
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+          <a class="card" href="item.html">
+            <img class="card-img-top" src="../data/profile/defaultProfilePicture.jpg">
+            <div class="card-body">Explore Item</div>
+          </a>
+        </div>
+
+        <div class="clearfix clearfix-sup">
+          <button type="button" onclick="document.getElementById('explore').style.display='none'"
+                  class=" button-sup cancelbtn cancelbtn-sup"> Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
