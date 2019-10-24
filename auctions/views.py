@@ -16,8 +16,12 @@ def profile(request, username):
 
 
 def item(request, item_id):
-    return HttpResponse("This is the item view of item %s" % item_id)
+    template = loader.get_template('auctions/item.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
 def login(request):
-    return HttpResponse("This is the login")
+    template = loader.get_template('auctions/login.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
