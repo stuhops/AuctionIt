@@ -26,6 +26,7 @@ class Item(models.Model):
     categories = models.ManyToManyField(Category)
 
     # Member Variables
+    item_id = models.IntegerField(default=None)
     description = models.CharField(max_length=1000)
     current_price = models.DecimalField(max_digits=8, decimal_places=2)
     start_date = models.DateTimeField('start date')
@@ -41,26 +42,16 @@ class Person(models.Model):
     # Dependencies
     # Member Variables
     name = models.CharField(max_length=128)
+    username = models.CharField(max_length=32)
     # phone_number = PhoneField(blank=True, help_text='Contact phone number')  # https://pypi.org/project/django-phone-field/
 
     def __str__(self):
-        return "This Person's name is %s" % self.name
-
-
-class Bidder(models.Model):
-    # Dependencies
-    personal_info = models.OneToOneField(Person, on_delete=models.CASCADE)
-
-    # Member Variables
-
-    def __str__(self):
-        return "This bidder's name is %s" % (self.personal_info.name)
-
+        return self.name
 
 class Bid(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    bidder = models.ForeignKey(Bidder, on_delete=models.CASCADE)
+    bidder = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     # Member Variables
     price = models.DecimalField(max_digits=8, decimal_places=2)
