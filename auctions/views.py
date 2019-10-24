@@ -10,18 +10,12 @@ def index(request):
 
 
 def profile(request, username):
-    template = loader.get_template('auctions/profile.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'auctions/profile.html', {})
 
 
 def item(request, item_id):
-    template = loader.get_template('auctions/item.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'auctions/item.html', {})
 
 
 def login(request):
-    template = loader.get_template('auctions/login.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'auctions/login.html', {})
