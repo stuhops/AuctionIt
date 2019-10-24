@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
+
+from .models import Auction, Category, Item, Person, Bid
 
 
 def index(request):
@@ -7,10 +10,12 @@ def index(request):
 
 
 def profile(request):
-    return HttpResponse("This is the user profile of user %s" % username)
+    template = loader.get_template('auctions/profile.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 
-def item(request):
+def item(request, item_id):
     return HttpResponse("This is the item view of item %s" % item_id)
 
 
