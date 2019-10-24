@@ -9,7 +9,7 @@ def index(request):
     return HttpResponse("This is the index")
 
 
-def profile(request):
+def profile(request, username):
     template = loader.get_template('auctions/profile.html')
     context = {}
     return HttpResponse(template.render(context, request))
