@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.http import Http404
 from django.http import HttpResponse
 from django.template import loader
 
@@ -10,10 +11,12 @@ def index(request):
 
 
 def profile(request, username):
+    # user = get_object_or_404(Person, username=username)
     return render(request, 'auctions/profile.html', {})
 
 
 def item(request, item_id):
+    # user = get_object_or_404(Item, item_id=item_id)
     return render(request, 'auctions/item.html', {})
 
 
