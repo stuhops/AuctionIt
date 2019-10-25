@@ -33,7 +33,7 @@ class Item(models.Model):
     # start_date = models.DateTimeField('start date')
     # end_date = models.DateTimeField('end date')
     # sold = models.BooleanField(default=False)
-    # hidden = models.BooleanField(default=False)
+    hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return "%s the item: (description) %s" % (self.name, self.description)
