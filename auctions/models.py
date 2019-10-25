@@ -1,11 +1,12 @@
 from django.db import models
+import datetime
 
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
 
     def __str__(self):
-        return "%s the auction" % self.auction_id
+        return self.auction_id
 
 
 class Category(models.Model):
@@ -17,7 +18,7 @@ class Category(models.Model):
     name = models.CharField(max_length=36)
 
     def __str__(self):
-        return "%s the category" % self.name
+        return "%s category" % self.name
 
 
 class Item(models.Model):
@@ -30,10 +31,14 @@ class Item(models.Model):
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=1000)
     current_price = models.DecimalField(max_digits=8, decimal_places=2)
-    # start_date = models.DateTimeField('start date')
-    # end_date = models.DateTimeField('end date')
-    # sold = models.BooleanField(default=False)
+    start_date = models.DateTimeField('start date')
+    end_date = models.DateTimeField('end date')
+    sold = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+
+    def getTimeDiff(self):
+        dif = datetime.datetime.now() - self.end_date.replace(tzinfo=None)
+        return "%s days, %s hours, %s minutes, and %s seconds" % (dif.days, dif.seconds // 3600, (dif.seconds//60)%60, (dif.seconds//60)//60)
 
     def __str__(self):
         return "%s the item: (description) %s" % (self.name, self.description)

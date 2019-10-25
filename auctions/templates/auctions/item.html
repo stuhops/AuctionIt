@@ -68,7 +68,7 @@
       </div>
       <div class="col-sm-8">
         <h2>{{ item.name }}</h2>
-        <h5 class="timeLeft">Time left: 2 hours</h5>
+        <h5 class="timeLeft">Time left: {{ item.getTimeDiff }}</h5>
         <p>{{ item.description }}</p>
         <br>
         <h2>Bid</h2>
@@ -113,44 +113,44 @@
         <p>Check out all the cool items up for auction!</p>
         <hr class="hr-sup">
 
-        <div class="card-columns">
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-          <a class="card" href="item.html">
-            <img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
-            <div class="card-body">Explore Item</div>
-          </a>
-        </div>
+        <!--<div class="card-columns">-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+          <!--<a class="card" href="item.html">-->
+            <!--<img class="card-img-top" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">-->
+            <!--<div class="card-body">Explore Item</div>-->
+          <!--</a>-->
+        <!--</div>-->
 
         <div class="clearfix clearfix-sup">
           <button type="button" onclick="document.getElementById('explore').style.display='none'"
