@@ -15,9 +15,9 @@ def profile(request, username):
     return render(request, 'auctions/profile.html', {})
 
 
-def item(request):
-    # user = get_object_or_404(Item, item_id=item_id)
-    return render(request, 'auctions/item.html', {})
+def item(request, item_id):
+    item = get_object_or_404(Item, item_id=item_id)
+    return render(request, 'auctions/item.html', {'item': item})
 
 
 def login(request):
