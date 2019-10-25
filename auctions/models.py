@@ -29,7 +29,7 @@ class Item(models.Model):
     item_id = models.IntegerField(default=None)
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=1000)
-    # current_price = models.DecimalField(max_digits=8, decimal_places=2)
+    current_price = models.DecimalField(max_digits=8, decimal_places=2)
     # start_date = models.DateTimeField('start date')
     # end_date = models.DateTimeField('end date')
     # sold = models.BooleanField(default=False)

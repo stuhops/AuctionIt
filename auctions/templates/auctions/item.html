@@ -67,19 +67,14 @@
         <hr class="d-sm-none">
       </div>
       <div class="col-sm-8">
-        <h2>Item Description</h2>
+        <h2>{{ item.name }}</h2>
         <h5 class="timeLeft">Time left: 2 hours</h5>
-        <p>This is some info</p>
-        <ul>
-          <li>This is some info</li>
-          <li>And more info</li>
-          <li>And even more info</li>
-        </ul>
+        <p>{{ item.description }}</p>
         <br>
         <h2>Bid</h2>
-        <button type="button" class="btn btn-lrg bg-success">curr price + $1</button>
-        <button type="button" class="btn btn-lrg bg-success">curr price + $5</button>
-        <button type="button" class="btn btn-lrg bg-success">curr price + $10</button>
+        <button type="button" class="btn btn-lrg bg-success">${{ item.current_price|add:"1" }}</button>
+        <button type="button" class="btn btn-lrg bg-success">${{ item.current_price|add:"5" }}</button>
+        <button type="button" class="btn btn-lrg bg-success">${{ item.current_price|add:"10" }}</button>
       </div>
     </div>
   </div>
