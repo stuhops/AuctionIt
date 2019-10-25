@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Auction, Category, Item, Person, Bid
+
+admin.site.register(Auction)
+admin.site.register(Category)
+admin.site.register(Item)
+admin.site.register(Person)
+admin.site.register(Bid)
+

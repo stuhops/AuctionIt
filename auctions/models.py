@@ -27,7 +27,8 @@ class Item(models.Model):
 
     # Member Variables
     item_id = models.IntegerField(default=None)
-    # description = models.CharField(max_length=1000)
+    name = models.CharField(max_length=64)
+    description = models.CharField(max_length=1000)
     # current_price = models.DecimalField(max_digits=8, decimal_places=2)
     # start_date = models.DateTimeField('start date')
     # end_date = models.DateTimeField('end date')
@@ -47,6 +48,7 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Bid(models.Model):
     # Dependencies
