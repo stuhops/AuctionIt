@@ -15,7 +15,7 @@
 </head>
 <body>
 <div id="app">
-
+{% if user.is_authenticated %}
   <nav class="navbar navbar-expand-md navbar-light">
     <a class="navbar-brand" href="profile.html"><img src="{% static 'auctions/images/logo/logo-med.png' %}" style="height: 50px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -48,6 +48,7 @@
         Explore</a>
       <input class="ml-auto mr-1" type="text" placeholder="Search..">
       <button type="submit"><i class="fa fa-search"></i></button>
+      <a type="button" class="nav nav-pills nav-items nav-link active" href="{% url 'logout' %}" >Logout</a>
     </div>
   </nav>
 
@@ -159,5 +160,9 @@
       </div>
     </div>
   </div>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
 </div>
 </body>
