@@ -37,7 +37,7 @@ class Item(models.Model):
     hidden = models.BooleanField(default=False)
 
     def getTimeDiff(self):
-        dif = datetime.datetime.now() - self.end_date.replace(tzinfo=None)
+        dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
         return "%s days, %s hours, %s minutes, and %s seconds" % (dif.days, dif.seconds // 3600, (dif.seconds//60)%60, (dif.seconds//60)//60)
 
     def __str__(self):
