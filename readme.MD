@@ -8,19 +8,15 @@ Version-control procedures:
 
 Tool stack description and setup procedure:
 
-    Our tool stack is going to be Java as our backend using Springboot for our framework. For front-end, we'll use JavaScript with django as our frame work.
-
-    We'llbe using Java 11, with the accompanying Springboot with version 2.1.8 installed. FOr the front end, we'll use JavaScript 1.8.5 and version 2.2.5 for Django.
+    We'll be using python and django for for both the front and backend. 
 
 Build instructions:
 
-    To build our project, first download and import the project into an IDE, like eclipse or IntelliJ. For example, Eclipse users can select Import…​ → Existing Maven Projects from the File menu.
-
-    However, it is also possible to run the project as a Jar by typing java -jar src/driver.jar
+    To build our project, first make sure python 3 is installed and then download the project. From here, unzip or extract the project to your desired location and navigate there with a terminal to the root of the project. From the root of the project, it is neccesary to to import the databases, which can be done by typing "python manage.py migrate" followed by "python manage.py makemigrations". From here, run "python manage.py runserver" and the server should now be up and running.
 
 Unit testing instructions:
 
-    For unit testing, JUNit will be used. This allows the classes to be easily tested, with additional tests added or removed based off changes to the source code. We hope to achieve 80% coverage as a minimum.
+    For unit testing, the standard library from django includes a unit testing tools and those will be used for the unit testng.
 
 System testing instructions:
 
