@@ -13,7 +13,7 @@
 <h2 style="text-align:center"><img class="logoWelcome" src="{% static 'auctions/images/logo/logo-med.png' %}"></h2>
 <!-- General outline code from w3schools.com -->
 <div class="container container-sup" style="background-color: #f2f2f2; padding-top: 5%">
-    <form method="post">
+    <form method="post" value="'sign-in'">
         {% csrf_token %}
         <div class="row">
             <div class="vl">
@@ -66,8 +66,14 @@
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr class="hr-sup">
-            <label for="email"><b>Email</b></label>
-            <input class="input-sup" type="text" placeholder="Enter Email" name="email" required>
+{#            <label for="email"><b>Email</b></label>#}
+{#            <input class="input-sup" type="text" placeholder="Enter Email" name="email" required>#}
+
+            <label for="name"><b>Name</b></label>
+            <input class="input-sup" type="text" placeholder="Enter your name" name="name" required>
+
+            <label for="username"><b>Username</b></label>
+            <input class="input-sup" type="text" placeholder="Enter Username" name="username" required>
 
             <label for="psw"><b>Password</b></label>
             <input class="input-sup" type="password" placeholder="Enter Password" name="psw" required>
