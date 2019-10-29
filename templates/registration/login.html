@@ -49,7 +49,8 @@
 <div class="bottom-container">
     <div class="row">
         <div class="col">
-            <a style="color:white" class="btn" onclick="document.getElementById('sign-up').style.display='block'" >Sign up</a>
+{#            <a style="color:white" class="btn" onclick="document.getElementById('sign-up').style.display='block'" >Sign up</a>#}
+            <a style="color:white" class="btn" href="{% url 'accounts:signup' %}" >Sign up</a>
         </div>
         <div class="col">
             <a href="#" style="color:white" class="btn">Forgot password?</a>
@@ -57,44 +58,44 @@
     </div>
 </div>
 
-<!-- The Modal (contains the Sign Up form) -->
-<div id="sign-up" class="modal modal-sup">
-    <span onclick="document.getElementById('sign-up').style.display='none'" class="close close-sup" title="Close Modal"></span>
-    <form class="modal-content modal-content-sup animate" method="post">
-        {% csrf_token %}
-        <div class="container container-sup">
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr class="hr-sup">
+{#<!-- The Modal (contains the Sign Up form) -->#}
+{#<div id="sign-up" class="modal modal-sup">#}
+{#    <span onclick="document.getElementById('sign-up').style.display='none'" class="close close-sup" title="Close Modal"></span>#}
+{#    <form class="modal-content modal-content-sup animate" method="post">#}
+{#        {% csrf_token %}#}
+{#        <div class="container container-sup">#}
+{#            <h1>Sign Up</h1>#}
+{#            <p>Please fill in this form to create an account.</p>#}
+{#            <hr class="hr-sup">#}
 {#            <label for="email"><b>Email</b></label>#}
 {#            <input class="input-sup" type="text" placeholder="Enter Email" name="email" required>#}
-
-            <label for="name"><b>Name</b></label>
-            <input class="input-sup" type="text" placeholder="Enter your name" name="name" required>
-
-            <label for="username"><b>Username</b></label>
-            <input class="input-sup" type="text" placeholder="Enter Username" name="username" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input class="input-sup" type="password" placeholder="Enter Password" name="psw" required>
-
-            <label for="psw-repeat"><b>Repeat Password</b></label>
-            <input class="input-sup" type="password" placeholder="Repeat Password" name="psw-repeat" required>
-
-            <label>
-                <input class="input-sup" type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-            </label>
-
-            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-
-            <div class="clearfix clearfix-sup">
-                <button type="button" onclick="document.getElementById('sign-up').style.display='none'"
-                        class=" button-sup cancelbtn cancelbtn-sup"> Cancel</button>
-                <button type="submit" class="button-sup signup signupbtn-sup">Sign Up</button>
-            </div>
-        </div>
-    </form>
-</div>
+{##}
+{#            <label for="name"><b>Name</b></label>#}
+{#            <input class="input-sup" type="text" placeholder="Enter your name" name="name" required>#}
+{##}
+{#            <label for="username"><b>Username</b></label>#}
+{#            <input class="input-sup" type="text" placeholder="Enter Username" name="username" required>#}
+{##}
+{#            <label for="psw"><b>Password</b></label>#}
+{#            <input class="input-sup" type="password" placeholder="Enter Password" name="psw" required>#}
+{##}
+{#            <label for="psw-repeat"><b>Repeat Password</b></label>#}
+{#            <input class="input-sup" type="password" placeholder="Repeat Password" name="psw-repeat" required>#}
+{##}
+{#            <label>#}
+{#                <input class="input-sup" type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me#}
+{#            </label>#}
+{##}
+{#            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>#}
+{##}
+{#            <div class="clearfix clearfix-sup">#}
+{#                <button type="button" onclick="document.getElementById('sign-up').style.display='none'"#}
+{#                        class=" button-sup cancelbtn cancelbtn-sup"> Cancel</button>#}
+{#                <button type="submit" class="button-sup signup signupbtn-sup">Sign Up</button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}
 
 </body>
 </html>
