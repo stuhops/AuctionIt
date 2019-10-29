@@ -10,7 +10,7 @@ def index(request):
     return HttpResponse("This is the index")
 
 
-def profile(request, username):
+def profile(request):
     # user = get_object_or_404(Person, username=username)
     return render(request, 'auctions/profile.html', {})
 
