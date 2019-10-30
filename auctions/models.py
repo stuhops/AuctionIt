@@ -48,7 +48,7 @@ class Item(models.Model):
         return "%s the item: (description) %s" % (self.name, self.description)
 
 
-class Person(models.Model):
+class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
