@@ -1,7 +1,6 @@
 from django.db import models
 import datetime
 
-
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
 
@@ -36,6 +35,7 @@ class Item(models.Model):
     sold = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
 
+
     def getTimeDiff(self):
         dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
         return "%s days, %s hours, %s minutes, and %s seconds" % (dif.days, dif.seconds // 3600, (dif.seconds//60)%60, (dif.seconds//60)//60)
@@ -68,7 +68,10 @@ class Bid(models.Model):
                % (self.item, self.price, self.bidder.personal_info.name)
 
 
-
+class Image(models.Model):
+    # Depencdencies
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    image = models.ImageField()
 
 # TODO: Do we need to make an admin class or does it do that for us?
 
