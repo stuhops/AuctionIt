@@ -316,3 +316,10 @@ input[type=submit]:hover {
     overflow: hidden;
     margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
+
+.auction-heading {
+    text-align: center;
+    font-size: 200%;
+    color: white;
+    background-color: #f44336;
+}

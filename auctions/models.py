@@ -23,7 +23,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     # Dependencies
-    auction = models.ForeignKey(Auction, on_delete=models.CASCADE)
+    auction = models.ForeignKey(Auction, related_name='items', on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category)
 
     # Member Variables

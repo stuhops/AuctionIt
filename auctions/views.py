@@ -12,7 +12,13 @@ def index(request):
 
 def profile(request):
     # user = get_object_or_404(Person, username=username)
-    return render(request, 'auctions/profile.html', {})
+
+    # JAREN - CURRENTLY WORKING ON THIS
+    # # # # #
+    all_auctions_list = Auction.objects.filter().order_by('auction_id')
+    context = {'all_auctions_list': all_auctions_list}
+    return render(request, 'auctions/profile.html', context)
+    # # # # #
 
 
 def item(request, item_id):
