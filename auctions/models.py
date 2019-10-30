@@ -1,5 +1,8 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from stdimage import StdImageField, JPEGField
 
 class Auction(models.Model):
@@ -47,10 +50,21 @@ class Item(models.Model):
 
 class Person(models.Model):
     # Dependencies
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     # Member Variables
     name = models.CharField(max_length=128)
-    username = models.CharField(max_length=32)
-    # phone_number = PhoneField(blank=True, help_text='Contact phone number')  # https://pypi.org/project/django-phone-field/
+    phone_number = PhoneField(blank=True, help_text='Contact phone number')  # https://pypi.org/project/django-phone-field/
+    image = JPEGField(blank=True, upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def __str__(self):
         return self.name
@@ -73,12 +87,3 @@ class ItemImage(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     image = JPEGField(upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
-
-
-class ProfileImage(models.Model):
-    # Dependencies
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    image = JPEGField(upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
-# TODO: Do we need to make an admin class or does it do that for us?
-
-

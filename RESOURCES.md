@@ -8,3 +8,6 @@
 
 #####Cookies
 - https://docs.djangoproject.com/en/2.2/topics/http/sessions/
+
+####Extending the base user model
+- https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#proxy
