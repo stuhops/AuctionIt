@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from stdimage import StdImageField, JPEGField
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
@@ -68,11 +69,16 @@ class Bid(models.Model):
                % (self.item, self.price, self.bidder.personal_info.name)
 
 
-class Image(models.Model):
-    # Depencdencies
+class ItemImage(models.Model):
+    # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = JPEGField(upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
 
+
+class ProfileImage(models.Model):
+    # Dependencies
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    image = JPEGField(upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
 # TODO: Do we need to make an admin class or does it do that for us?
 
 
