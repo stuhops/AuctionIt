@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>User Profile</title>
-  <meta charset="utf-8">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div id="app">
+{% extends 'navbar.html' %}
+
+{% block title %}User Profile{% endblock%}
+
+{% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock%}
+
 {% block body %}
+  {% load static %}
   <div class="container" style="margin-top:30px">
     <div class="row">
       <div class="col-sm-4">
@@ -79,5 +80,3 @@
 
 {% endblock %}
 
-</div>
-</body>
