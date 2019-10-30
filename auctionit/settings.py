@@ -21,7 +21,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'auctions.apps.AuctionsConfig',
-    # 'phone_field',
+    'phonenumber_field',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',

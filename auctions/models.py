@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from stdimage import StdImageField, JPEGField
+from phonenumber_field.modelfields import PhoneNumberField
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
@@ -54,7 +55,7 @@ class Profile(models.Model):
 
     # Member Variables
     name = models.CharField(max_length=128)
-    phone_number = PhoneField(blank=True, help_text='Contact phone number')  # https://pypi.org/project/django-phone-field/
+    phone_number = PhoneNumberField()
     image = JPEGField(blank=True, upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
 
     @receiver(post_save, sender=User)
@@ -73,7 +74,7 @@ class Profile(models.Model):
 class Bid(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    bidder = models.ForeignKey(Person, on_delete=models.CASCADE)
+    bidder = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Member Variables
     price = models.DecimalField(max_digits=8, decimal_places=2)

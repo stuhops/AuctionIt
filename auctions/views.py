@@ -3,7 +3,7 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Auction, Category, Item, Person, Bid
+from .models import Auction, Category, Item, Profile, Bid, ItemImage
 
 
 def index(request):
