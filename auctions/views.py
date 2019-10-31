@@ -28,6 +28,14 @@ def item(request, item_id):
 
 
 def editProfile(request):
+    if request.method == 'POST':
+        form = EditProfile(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+
+            print(name, email)
+
     form = EditProfile()
     return render(request, 'editProfile.html', {'profileForm': form})
 
