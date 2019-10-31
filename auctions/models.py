@@ -54,7 +54,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # Member Variables
-    name = models.CharField(blank=True, max_length=128)
+    name = models.CharField(max_length=128)
+    email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
     image = JPEGField(blank=True, upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
 

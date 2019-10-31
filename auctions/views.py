@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 from django.http import HttpResponse
 from django.template import loader
+from .forms import *
 
 from .models import Auction, Category, Item, Profile, Bid, ItemImage
 
@@ -24,6 +25,11 @@ def profile(request):
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     return render(request, 'auctions/item.html', {'item': item})
+
+
+def editProfile(request):
+    form = EditProfile()
+    return render(request, 'editProfile.html', {'profileForm': form})
 
 
 def login(request):
