@@ -27,17 +27,28 @@ def item(request, item_id):
     return render(request, 'auctions/item.html', {'item': item})
 
 
+# def editProfile(request):
+#     if request.method == 'POST':
+#         form = EditProfile(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['name']
+#             email = form.cleaned_data['email']
+#
+#             print(name, email)
+#
+#     form = EditProfile()
+#     return render(request, 'auctions/editProfile.html', {'profileForm': form})
+#
+
 def editProfile(request):
     if request.method == 'POST':
-        form = EditProfile(request.POST)
+        form = EditProfilePost(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
+            # form.save()
+            print("Valid")
 
-            print(name, email)
-
-    form = EditProfile()
-    return render(request, 'editProfile.html', {'profileForm': form})
+    form = EditProfilePost()
+    return render(request, 'auctions/editProfile.html', {'profileForm': form})
 
 
 def login(request):
