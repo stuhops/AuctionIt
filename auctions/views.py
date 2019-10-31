@@ -42,12 +42,12 @@ def item(request, item_id):
 
 def editProfile(request):
     if request.method == 'POST':
-        form = EditProfilePost(request.POST)
+        form = EditProfile(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             print("Valid")
 
-    form = EditProfilePost()
+    form = EditProfile()
     return render(request, 'auctions/editProfile.html', {'profileForm': form})
 
 
