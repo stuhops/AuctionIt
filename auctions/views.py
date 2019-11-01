@@ -6,7 +6,7 @@ from .models import Auction, Item
 
 
 def index(request):
-    return HttpResponse("This is the index")
+    return redirect('auctions:profile')
 
 
 def profile(request):
@@ -42,7 +42,3 @@ def editProfile(request):
         form = EditProfile(instance=request.user.profile)
 
     return render(request, 'auctions/editProfile.html', {'profileForm': form})
-
-
-def login(request):
-    return render(request, 'auctions/login.html', {})
