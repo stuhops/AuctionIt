@@ -10,15 +10,19 @@ def index(request):
 
 
 def profile(request):
-    if not request.user.profile.name or not request.user.profile.email:
-        return redirect('auctions:editProfile')
+    try:
+        if not request.user.profile.name or not request.user.profile.email:
+            return redirect('auctions:editProfile')
 
-    # JAREN - CURRENTLY WORKING ON THIS
-    # # # # #
-    all_auctions_list = Auction.objects.filter().order_by('auction_id')
-    context = {'all_auctions_list': all_auctions_list}
-    return render(request, 'auctions/profile.html', context)
-    # # # # #
+        # JAREN - CURRENTLY WORKING ON THIS
+        # # # # #
+        all_auctions_list = Auction.objects.filter().order_by('auction_id')
+        context = {'all_auctions_list': all_auctions_list}
+        return render(request, 'auctions/profile.html', context)
+        # # # # #
+    except AttributeError:
+        print("The user is not logged in")
+        return redirect('login')
 
 
 def item(request, item_id):
