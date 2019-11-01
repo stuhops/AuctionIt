@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from .forms import EditProfile
 
-from .models import Auction, Category, Item, Profile, Bid, ItemImage
+from .models import Auction, Item
 
 
 def index(request):
@@ -11,6 +11,8 @@ def index(request):
 
 def profile(request):
     # user = get_object_or_404(Person, username=username)
+    if not request.user.profile.name or not request.user.profile.email:
+        return redirect('auctions:editProfile')
 
     # JAREN - CURRENTLY WORKING ON THIS
     # # # # #
