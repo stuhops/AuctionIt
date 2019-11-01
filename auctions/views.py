@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from .forms import EditProfile
 
@@ -31,6 +31,7 @@ def editProfile(request):
         if form.is_valid():
             form.save()
             print("Saved")
+            return redirect('auctions:profile')
 
     else:
         form = EditProfile(instance=request.user.profile)
