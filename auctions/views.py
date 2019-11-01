@@ -10,7 +10,6 @@ def index(request):
 
 
 def profile(request):
-    # user = get_object_or_404(Person, username=username)
     if not request.user.profile.name or not request.user.profile.email:
         return redirect('auctions:editProfile')
 
