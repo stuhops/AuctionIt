@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from stdimage import StdImageField, JPEGField
+from stdimage import JPEGField
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -41,10 +41,11 @@ class Item(models.Model):
     sold = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
 
-
     def getTimeDiff(self):
         dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
-        return "%s days, %s hours, %s minutes, and %s seconds" % (dif.days, dif.seconds // 3600, (dif.seconds//60)%60, (dif.seconds//60)//60)
+        return "%s days, %s hours, %s minutes, and %s seconds" % \
+            (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
+                (dif.seconds//60)//60)
 
     def __str__(self):
         return "%s the item: (description) %s" % (self.name, self.description)
@@ -58,7 +59,9 @@ class Profile(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
-    image = JPEGField(blank=True, upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
+    image = JPEGField(blank=True, upload_to='UploadedImages/',
+                      variations={'thumbnail': {"width": 100, "height": 100,
+                                  "crop": True}})
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -89,4 +92,5 @@ class Bid(models.Model):
 class ItemImage(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    image = JPEGField(upload_to='UploadedImages/', variations={'thumbnail': {"width": 100, "height": 100, "crop": True}})
+    image = JPEGField(upload_to='UploadedImages/', variations={
+        'thumbnail': {"width": 100, "height": 100, "crop": True}})
