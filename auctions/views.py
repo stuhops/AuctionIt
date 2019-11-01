@@ -1,8 +1,6 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import Http404
 from django.http import HttpResponse
-from django.template import loader
-from .forms import *
+from .forms import EditProfile
 
 from .models import Auction, Category, Item, Profile, Bid, ItemImage
 
@@ -27,27 +25,16 @@ def item(request, item_id):
     return render(request, 'auctions/item.html', {'item': item})
 
 
-# def editProfile(request):
-#     if request.method == 'POST':
-#         form = EditProfile(request.POST)
-#         if form.is_valid():
-#             name = form.cleaned_data['name']
-#             email = form.cleaned_data['email']
-#
-#             print(name, email)
-#
-#     form = EditProfile()
-#     return render(request, 'auctions/editProfile.html', {'profileForm': form})
-#
-
 def editProfile(request):
     if request.method == 'POST':
-        form = EditProfile(request.POST)
+        form = EditProfile(request.POST, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            print("Valid")
+            print("Saved")
 
-    form = EditProfile()
+    else:
+        form = EditProfile(instance=request.user.profile)
+
     return render(request, 'auctions/editProfile.html', {'profileForm': form})
 
 
