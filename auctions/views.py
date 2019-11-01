@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
 from .forms import EditProfile
 
 from .models import Auction, Item
