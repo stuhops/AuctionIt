@@ -7,6 +7,10 @@ verify_ssl = true
 
 [packages]
 django = "*"
+django-phonenumber-field = "*"
+django-extensions = "*"
+django-stdimage = "*"
+phonenumbers = "*"
 
 [requires]
 python_version = "3.6"

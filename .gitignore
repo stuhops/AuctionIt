@@ -3,3 +3,4 @@ db.sqlite3
 auctions/migrations
 __pycache__
 UploadedImages
+.vscode
