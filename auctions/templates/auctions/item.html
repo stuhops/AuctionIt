@@ -15,11 +15,15 @@
         </div>
         <p>Carousel of other images of the item</p>
         <h3>Recent Bidders and prices</h3>
-        <ul>
-          <li>Jeff: $5 -- ah I hate that Jeff outbids me </li>
-          <li>Steve $4 -- STEVE TOO </li>
-          <li>Melissa -- Now I really need to bid so I can win!</li>
-        </ul>
+        {% if bid_list %}
+          <ul>
+            {% for bid in bid_list %}
+              <li>${{ bid.price }} -- {{ bid.bidder.username }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>This item has no bids</p>
+        {% endif %}
         <hr class="d-sm-none">
       </div>
       <div class="col-sm-8">

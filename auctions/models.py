@@ -83,6 +83,7 @@ class Bid(models.Model):
 
     # Member Variables
     price = models.DecimalField(max_digits=8, decimal_places=2)
+    date = models.DateTimeField('Date published')
 
     def __str__(self):
         return "Bid for the item %s at the price of %s by the user %s" \

@@ -29,7 +29,11 @@ def item(request, item_id):
     try:
         selected_bid = request.POST['bid']
     except (KeyError):
-        return render(request, 'auctions/item.html', {'item': item})
+        bid_list = item.bid_set.order_by('-price')[:3]
+        return render(request, 'auctions/item.html', {
+            'item': item,
+            'bid_list': bid_list,
+            })
     else:
         if float(selected_bid) > item.current_price:
             bid = Bid(item=item, bidder=request.user, price=selected_bid)
