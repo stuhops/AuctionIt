@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import EditProfile
+import datetime
 
 from .models import Auction, Item, Bid
 
@@ -36,7 +37,8 @@ def item(request, item_id):
             })
     else:
         if float(selected_bid) > item.current_price:
-            bid = Bid(item=item, bidder=request.user, price=selected_bid)
+            bid = Bid(item=item, bidder=request.user, price=selected_bid,
+                      date=datetime.datetime.now())
             item.current_price = selected_bid  # TODO: Make a new bid
             bid.save()
             item.save()
