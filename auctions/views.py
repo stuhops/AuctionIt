@@ -31,12 +31,12 @@ def item(request, item_id):
     except (KeyError):  # TODO: Check if the bid is too low
         return render(request, 'auctions/item.html', {'item': item})
     else:
-        if selected_bid > item.price:
-            item.price = selected_bid  # TODO: Make a new bid
+        if float(selected_bid) > item.current_price:
+            item.current_price = selected_bid  # TODO: Make a new bid
             item.save()
 
         # TODO: Output a message saying whether the bid was accepted or denied
-        return redirect('auctions:item', args=(item_id))
+        return redirect('auctions:item', item.item_id)
 
 
 def editProfile(request):
