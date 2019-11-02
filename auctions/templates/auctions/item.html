@@ -7,6 +7,12 @@
 
 {% block body %}
   {% load static %}
+  {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="messages {{ message.tags }}"{% endif %}>{{ message }}</li>
+    </div>
+    {% endfor %}
+  {% endif %}
   <div class="container" style="margin-top:30px">
     <div class="row">
       <div class="col-sm-4">
@@ -34,7 +40,7 @@
         <h2>Bid</h2>
         <form action="{% url 'auctions:item' item.id %}" method="POST">
           {% csrf_token %}
-          <input type="submit" class="btn btn-lrg bg-success" name="bid" id="1" value="{{ item.current_price|add:'1' }}">
+          <input type="submit" class="btn btn-lrg bg-success" name="bid" id="1" label="Bid ${{ item.current_price|add:'1' }}" value="{{ item.current_price|add:'1' }}">
           <input type="submit" class="btn btn-lrg bg-success" name="bid" id="5" value="{{ item.current_price|add:'5' }}">
           <input type="submit" class="btn btn-lrg bg-success" name="bid" id="10" value="{{ item.current_price|add:'10' }}">
         </form>

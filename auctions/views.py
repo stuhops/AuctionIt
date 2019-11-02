@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib import messages
 from .forms import EditProfile
 import datetime
 
@@ -42,8 +43,14 @@ def item(request, item_id):
             item.current_price = selected_bid  # TODO: Make a new bid
             bid.save()
             item.save()
+            messages.success(request, 'Your $%s bid was successfully recorded.'
+                             % item.current_price)
+        else:
+            messages.error(request, 'Your $%s bid was ' % selected_bid +
+                           'not recorded. An error happened while processing ' +
+                           'your request.'
+                           )
 
-        # TODO: Output a message saying whether the bid was accepted or denied
         return redirect('auctions:item', item.item_id)
 
 
