@@ -43,9 +43,21 @@ class Item(models.Model):
 
     def getTimeDiff(self):
         dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
-        return "%s days, %s hours, %s minutes, and %s seconds" % \
-            (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
-                (dif.seconds//60)//60)
+        if self.isSold():
+            return "None"
+        else:
+            return "%s days, %s hours, %s minutes, and %s seconds" % \
+                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
+                    (dif.seconds//60)//60)
+
+    def isSold(self):
+        if (self.end_date.replace(tzinfo=None) -
+                datetime.datetime.now()).total_seconds() < 0:
+            self.sold = True
+        else:
+            self.sold = False
+
+        return self.sold
 
     def __str__(self):
         return self.name

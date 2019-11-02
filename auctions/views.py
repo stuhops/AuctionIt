@@ -28,8 +28,12 @@ def profile(request):
 
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
+    item.isSold()
+        
     try:
         selected_bid = request.POST['bid']
+        if item.sold:
+            raise KeyError("Item is sold")
     except (KeyError):
         bid_list = item.bid_set.order_by('-price')[:3]
         return render(request, 'auctions/item.html', {
@@ -37,7 +41,7 @@ def item(request, item_id):
             'bid_list': bid_list,
             })
     else:
-        if float(selected_bid) > item.current_price:
+        if float(selected_bid) > item.current_price and not item.sold and not item.hidden:
             bid = Bid(item=item, bidder=request.user, price=selected_bid,
                       date=datetime.datetime.now())
             item.current_price = selected_bid  # TODO: Make a new bid
