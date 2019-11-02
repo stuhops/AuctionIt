@@ -48,7 +48,7 @@ class Item(models.Model):
                 (dif.seconds//60)//60)
 
     def __str__(self):
-        return "%s the item: (description) %s" % (self.name, self.description)
+        return self.name
 
 
 class Profile(models.Model):
@@ -86,7 +86,7 @@ class Bid(models.Model):
 
     def __str__(self):
         return "Bid for the item %s at the price of %s by the user %s" \
-               % (self.item, self.price, self.bidder.personal_info.name)
+               % (self.item, self.price, self.bidder.username)
 
 
 class ItemImage(models.Model):

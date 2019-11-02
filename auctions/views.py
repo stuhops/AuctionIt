@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import EditProfile
 
-from .models import Auction, Item
+from .models import Auction, Item, Bid
 
 
 def index(request):
@@ -28,11 +28,13 @@ def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     try:
         selected_bid = request.POST['bid']
-    except (KeyError):  # TODO: Check if the bid is too low
+    except (KeyError):
         return render(request, 'auctions/item.html', {'item': item})
     else:
         if float(selected_bid) > item.current_price:
+            bid = Bid(item=item, bidder=request.user, price=selected_bid)
             item.current_price = selected_bid  # TODO: Make a new bid
+            bid.save()
             item.save()
 
         # TODO: Output a message saying whether the bid was accepted or denied
