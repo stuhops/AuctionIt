@@ -26,7 +26,17 @@ def profile(request):
 
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
-    return render(request, 'auctions/item.html', {'item': item})
+    try:
+        selected_bid = request.POST['bid']
+    except (KeyError):  # TODO: Check if the bid is too low
+        return render(request, 'auctions/item.html', {'item': item})
+    else:
+        if selected_bid > item.price:
+            item.price = selected_bid  # TODO: Make a new bid
+            item.save()
+
+        # TODO: Output a message saying whether the bid was accepted or denied
+        return redirect('auctions:item', args=(item_id))
 
 
 def editProfile(request):
