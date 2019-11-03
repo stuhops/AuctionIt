@@ -7,6 +7,9 @@
 - https://wsvincent.com/django-user-authentication-tutorial-signup/
 - https://www.youtube.com/watch?v=3XOS_UpJirU
 
+#####Reset Password
+- https://wsvincent.com/django-user-authentication-tutorial-password-reset/
+
 #####Cookies
 - https://docs.djangoproject.com/en/2.2/topics/http/sessions/
 
