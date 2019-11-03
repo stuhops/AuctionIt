@@ -4,3 +4,4 @@ auctions/migrations
 __pycache__
 UploadedImages
 .vscode
+sent_emails
