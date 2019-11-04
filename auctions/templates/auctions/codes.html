@@ -2,13 +2,18 @@
 <html>
 <head>
 </head>
-{% block content %}
 <body>
     <div>
-        <img id="qr1" src="http://api.qrserver.com/v1/create-qr-code/?data=http://10.104.12.152:8000/auctions/"></img></div>
-        <label for="qr1">QR code 1</label>
+        <img id="qrHome" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/"></img></div>
+        <label for="qrHome">Home</label>
     </div>
-
+    {% if items %}
+        {% for item in items %}
+            <div>
+                <img id="qr{{ item.id }}" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/item/{{ item.id }}"></img>
+                <label for="qr{{ item.id }}">{{ item.name }}</label>
+            </div>
+        {% endfor %}
+    {% endif %}
 </body>
-{% endblock %}
 </html>
