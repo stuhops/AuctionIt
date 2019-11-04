@@ -55,13 +55,17 @@
         <h5>The green backgrounds are ones you are currently winning</h5>
         <div class="row-fluid">
           <div class="col-lg-12 col-md-10 ">
-              {% for auction in all_auctions_list %}
-                <div class="cover-container">
-                <p class="auction-heading">AUCTION {{ auction.auction_id }} ITEMS</p>
-                {% for item in auction.items.all %}
-                  <a href="{% url 'auctions:item' item.item_id %}" class="cover-item bg-warning"><img class="fit-center" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}"></a>
-                {% endfor %}
+          {% for auction in all_auctions_list %}
+            <div class="cover-container">
+            <p class="auction-heading">AUCTION {{ auction.auction_id }} ITEMS</p>
+            {% for category in auction.categories.all %}
+              <p class="category-heading">CATEGORY: {{ category.name }}</p>
+              {% for item in category.items_in_category.all %}
+                <a href="{% url 'auctions:item' item.item_id %}" class="cover-item bg-warning"><img class="fit-center" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}"></a>
               {% endfor %}
+            {% endfor %}
+            </div>
+          {% endfor %}
             </div>
           </div>
         </div>
