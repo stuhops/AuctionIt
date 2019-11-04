@@ -16,7 +16,9 @@ class Auction(models.Model):
 
 class Category(models.Model):
     # Dependencies
-    auction = models.ManyToManyField(Auction)
+    # auctionKey = models.ForeignKey(Auction, related_name='categories', on_delete=models.CASCADE)
+    auction = models.ManyToManyField(Auction, related_name='categories')
+
 
     # Member Variables
     # Add child and parent categories here if we want them
@@ -29,7 +31,7 @@ class Category(models.Model):
 class Item(models.Model):
     # Dependencies
     auction = models.ForeignKey(Auction, related_name='items', on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name='items_in_category')
 
     # Member Variables
     item_id = models.IntegerField(default=None)
