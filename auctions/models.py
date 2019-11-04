@@ -19,7 +19,6 @@ class Category(models.Model):
     # auctionKey = models.ForeignKey(Auction, related_name='categories', on_delete=models.CASCADE)
     auction = models.ManyToManyField(Auction, related_name='categories')
 
-
     # Member Variables
     # Add child and parent categories here if we want them
     name = models.CharField(max_length=36)

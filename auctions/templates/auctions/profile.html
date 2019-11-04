@@ -17,13 +17,20 @@
         <div class="profilePicture">
           <img src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}">
         </div>
-        <p>Some text about me</p>
-        <h3>Recent Bids</h3>
-        <p>These are some of your recent bids<p>
         <ul class="nav nav-pills flex-column">
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
           </li>
+        </ul>
+        <p>Some text about me</p>
+        <h3>Recent Bids</h3>
+        <p>These are some of your recent bids</p>
+        <ul class="nav nav-pills flex-column">
+          {% for bid in recentBidList %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'auctions:item' bid.item.item_id %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+            </li>
+          {% endfor %}
         </ul>
         <hr class="d-sm-none">
       </div>

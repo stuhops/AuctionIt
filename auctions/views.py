@@ -17,8 +17,15 @@ def profile(request):
 
         # JAREN - CURRENTLY WORKING ON THIS
         # # # # #
+        recentBidList = request.user.bid_set.order_by('-date')[:5]
+
         all_auctions_list = Auction.objects.filter().order_by('auction_id')
-        context = {'all_auctions_list': all_auctions_list}
+
+        context = {
+            'all_auctions_list': all_auctions_list,
+            'recentBidList': recentBidList,
+            }
+
         return render(request, 'auctions/profile.html', context)
         # # # # #
     except AttributeError:
@@ -29,7 +36,7 @@ def profile(request):
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     item.isSold()
-        
+
     try:
         selected_bid = request.POST['bid']
         if item.sold:
