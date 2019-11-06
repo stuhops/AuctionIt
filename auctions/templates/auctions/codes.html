@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <img id="qrHome" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/"></img></div>
+        <label for="qrHome">Home</label>
+    </div>
+    {% if items %}
+        {% for item in items %}
+            <div>
+                <img id="qr{{ item.id }}" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/item/{{ item.id }}"></img>
+                <label for="qr{{ item.id }}">{{ item.name }}</label>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

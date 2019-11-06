@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .forms import EditProfile
 import datetime
+import socket
 
 from .models import Auction, Item, Bid
 
@@ -77,3 +78,22 @@ def editProfile(request):
         form = EditProfile(instance=request.user.profile)
 
     return render(request, 'auctions/editProfile.html', {'profileForm': form})
+
+def codes(request):
+    # get current ip adress
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ipAdress = s.getsockname()[0]
+    s.close()
+
+    #get port
+    port = request.META['SERVER_PORT']
+
+    #get Item list
+    items = Item.objects.all()
+
+    return render(request, 'auctions/codes.html', {
+        "ipAdress": ipAdress,
+        "port": port,
+        "items": items,
+    }) 
