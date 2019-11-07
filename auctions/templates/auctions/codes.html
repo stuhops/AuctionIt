@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>QR Codes</title>
 </head>
 <body>
+    <h1>QR codes for home and items</h1>
     <div>
-        <img id="qrHome" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/"></img></div>
+    <div class="code">
+        <img id="qrHome" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/" alt="Home code"></div>
         <label for="qrHome">Home</label>
     </div>
     {% if items %}
         {% for item in items %}
             <div>
-                <img id="qr{{ item.id }}" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/item/{{ item.id }}"></img>
+            <div class="code">
+                <img id="qr{{ item.id }}" src="http://api.qrserver.com/v1/create-qr-code/?data=http://{{ ipAdress }}:{{ port }}/auctions/item/{{ item.id }}" alt="Item code"></div>
                 <label for="qr{{ item.id }}">{{ item.name }}</label>
             </div>
         {% endfor %}
