@@ -6,6 +6,7 @@
 #####Sign Up
 - https://wsvincent.com/django-user-authentication-tutorial-signup/
 - https://www.youtube.com/watch?v=3XOS_UpJirU
+- https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#extending-user
 
 #####Reset Password
 - https://wsvincent.com/django-user-authentication-tutorial-password-reset/
@@ -20,3 +21,8 @@
 ###Explore Tab
 #####Infinite Scroll
 - https://simpleisbetterthancomplex.com/tutorial/2017/03/13/how-to-create-infinite-scroll-with-django.html
+
+
+###Database fix
+#####Database migrations not resetting
+- https://stackoverflow.com/questions/29253399/how-to-reset-migrations-in-django-1-7
