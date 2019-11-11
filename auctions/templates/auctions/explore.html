@@ -3,11 +3,38 @@
 {% block title %}Explore Auctions{% endblock %}
 
 {% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/exploreStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}">
 
 {% endblock %}
 
 {% block body %}
-    <h1>Test</h1>
+
+<div class="container" style="margin-top:30px; margin-left: 10%; margin-right: 10%;">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="auction-heading">
+                Select Auction to Display:
+            </div>
+            <br>
+            {% for auction in all_auctions_list %}
+                <button class="auction-listing">{{ auction.auction_id }}</button>
+            {% endfor %}
+        </div>
+        <div class="col-sm-8">
+            <!-- I NEED TO FINISH THIS - JAREN
+                {% for category in auction.categories.all %}
+                <div class="category-heading">{{ category.name }}</div>
+                {% for item in category.items_in_category.all %}
+                <a href="{% url 'auctions:item' item.item_id %}" class="cover-item bg-warning"><img class="fit-center" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}"></a>
+                {% endfor %}
+            {% endfor %} -->
+        </div>
+    </div>
+</div>
+
+  <script src="{% static 'auctions/js/explore.js' %}"></script> 
 
 
 

@@ -1,0 +1,37 @@
+.auction-heading {
+    text-align: left;
+    font-size: 200%;
+    color: black;
+    /* background-color: #f44336; */
+}
+
+.category-heading {
+    text-align: center;
+    font-size: 150%;
+    color: white;
+    background-color: blue;
+}
+
+
+
+ .auction-listing {
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 70%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+  }
+
+
+  .active, .auction-listing:hover {
+    background-color: #ccc;
+  }
+  
+
+  .category-listing {
+      background-color: red;
+  }
