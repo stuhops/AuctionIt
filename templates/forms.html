@@ -23,14 +23,8 @@
 
                     {% block errorMessage %}
                     {% if form.errors %}
-                        <div class="toast" data-autohide="false">
-                            <div class="toast-header">
-                                <strong class="mr-auto text-primary">Submission Error</strong>
-                                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
-                            </div>
-                            <div class="toast-body">
-                                <p>The data entered is not entered correctly. Please review your entries and resubmit.</p>
-                            </div>
+                        <div class="alert alert-warning">
+                            <strong>Error upon submission</strong><br> Please verify your entries
                         </div>
                     {% endif %}
                     {% endblock %}
