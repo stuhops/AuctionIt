@@ -3,6 +3,9 @@
 #####Login
 - https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/
 
+#####Login with social
+- https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
+
 #####Sign Up
 - https://wsvincent.com/django-user-authentication-tutorial-signup/
 - https://www.youtube.com/watch?v=3XOS_UpJirU

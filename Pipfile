@@ -12,6 +12,7 @@ django-extensions = "*"
 django-stdimage = "*"
 phonenumbers = "*"
 django-widget-tweaks = "*"
+social-auth-app-django = "*"
 
 [requires]
 python_version = "3.6"
