@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login | SignUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'auctions/css/loginStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'auctions/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<h2 style="text-align:center"><img class="logoWelcome" src="{% static 'auctions/images/logo/logo-med.png' %}"></h2>
+<!-- General outline code from w3schools.com -->
+<div class="container container-sup" style="background-color: #f2f2f2; padding-top: 5%">
+    <form method="post" value="'sign-in'">
+        {% csrf_token %}
+        <div class="row">
+            <div class="vl">
+                <span class="vl-innertext">or</span>
+            </div>
+
+            <div class="col">
+                <a href="#" class="fb btn">
+                    <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                </a>
+                <a href="#" class="twitter btn">
+                    <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+                </a>
+                <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+                </i> Login with Google+
+                </a>
+            </div>
+
+            <div class="col">
+                <div class="hide-md-lg">
+                    <p>Or sign in manually:</p>
+                </div>
+
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="bottom-container">
+    <div class="row">
+        <div class="col">
+{#            <a style="color:white" class="btn" onclick="document.getElementById('sign-up').style.display='block'" >Sign up</a>#}
+            <a style="color:white" class="btn" href="{% url 'accounts:signup' %}" >Sign up</a>
+        </div>
+        <div class="col">
+            <a href="{% url 'password_reset' %}" style="color:white" class="btn">Forgot password?</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

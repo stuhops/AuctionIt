@@ -1,62 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login | SignUp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'auctions/css/loginStyle.css' %}">
-    <link rel="stylesheet" href="{% static 'auctions/css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+{% extends 'forms.html' %}
 
-<h2 style="text-align:center"><img class="logoWelcome" src="{% static 'auctions/images/logo/logo-med.png' %}"></h2>
-<!-- General outline code from w3schools.com -->
-<div class="container container-sup" style="background-color: #f2f2f2; padding-top: 5%">
-    <form method="post" value="'sign-in'">
-        {% csrf_token %}
-        <div class="row">
-            <div class="vl">
-                <span class="vl-innertext">or</span>
-            </div>
+{% block title %}Login{% endblock %}
 
-            <div class="col">
-                <a href="#" class="fb btn">
-                    <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-                </a>
-                <a href="#" class="twitter btn">
-                    <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-                </a>
-                <a href="#" class="google btn"><i class="fa fa-google fa-fw">
-                </i> Login with Google+
-                </a>
-            </div>
+{% block header %}Sign in{% endblock %}
+{% block headerText %}One account, unlimited auctions{% endblock %}
 
-            <div class="col">
-                <div class="hide-md-lg">
-                    <p>Or sign in manually:</p>
-                </div>
+{% block formContent %}
 
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Login">
-            </div>
-
-        </div>
-    </form>
-</div>
-
-<div class="bottom-container">
-    <div class="row">
-        <div class="col">
-{#            <a style="color:white" class="btn" onclick="document.getElementById('sign-up').style.display='block'" >Sign up</a>#}
-            <a style="color:white" class="btn" href="{% url 'accounts:signup' %}" >Sign up</a>
-        </div>
-        <div class="col">
-            <a href="{% url 'password_reset' %}" style="color:white" class="btn">Forgot password?</a>
-        </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" placeholder="Username" required>
     </div>
-</div>
 
-</body>
-</html>
+    <br />
+    <div class="form-group">
+        <label for="password">Password:</label> 
+        <input type="password" class="form-control" id="password" placeholder="Password" required>
+    </div>
+
+{% endblock %}
+
+{% block submitBtnText %}Sign In{% endblock %}
+{% block submitBtnSubtext %}
+    By clicking Sign In, you agree to our 
+    <br>Terms and have read and acknowledge our 
+    <br>Privacy Statement.
+{% endblock %}
+
+{% block alternateInput %}
+    <hr>
+    <button type="button" class="btn btn-half btn-half-left btn-secondary">Forgot Password</button>
+    <button type="button" class="btn btn-half btn-secondary">Sign-up</button>
+{% endblock %}
