@@ -77,7 +77,8 @@ def editProfile(request):
     else:
         form = EditProfile(instance=request.user.profile)
 
-    return render(request, 'auctions/editProfile.html', {'profileForm': form})
+    return render(request, 'auctions/editProfile.html', {'form': form})
+
 
 def codes(request):
     # get current ip adress

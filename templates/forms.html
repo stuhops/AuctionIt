@@ -1,5 +1,6 @@
-
 {% extends 'base.html' %}
+
+{% load widget_tweaks %}
 
 {% block title %}Forms Template{% endblock %}
 
@@ -20,10 +21,23 @@
                     <h3 class="text-center">{% block header %}Header{% endblock %}</h3>
                     <p class="text-center">{% block headerText %}{% endblock %}</p>
 
-                    <div class="form-group">
-                        {% block formContent %}
-                        {% endblock %}
-                    </div>
+                    {% block formContent %}
+
+                        {% for hidden_field in form.hidden_fields %}
+                            {{ hidden_field }}
+                        {% endfor %}
+
+                        {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                {{ field.label_tag }}
+                                {% render_field field class="form-control" %}
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                    {% endblock %}
 
                     <div class="mt-5">
                         <button type="submit" class="btn btn-block btn-success">{% block onSuccess %}Submit{% endblock %}</button>
