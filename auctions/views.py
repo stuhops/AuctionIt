@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import EditProfile
 import datetime
 import socket
@@ -11,6 +12,7 @@ def index(request):
     return redirect('auctions:profile')
 
 
+@login_required
 def profile(request):
     try:
         if not request.user.profile.name or not request.user.profile.email:
@@ -34,6 +36,7 @@ def profile(request):
         return redirect('login')
 
 
+@login_required
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     item.isSold()
@@ -66,6 +69,7 @@ def item(request, item_id):
         return redirect('auctions:item', item.item_id)
 
 
+@login_required
 def editProfile(request):
     if request.method == 'POST':
         form = EditProfile(request.POST, instance=request.user.profile)
@@ -80,6 +84,7 @@ def editProfile(request):
     return render(request, 'auctions/editProfile.html', {'form': form})
 
 
+@login_required
 def codes(request):
     # get current ip adress
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
