@@ -9,13 +9,13 @@
 
     <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" placeholder="Username" required>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
     </div>
 
     <br />
     <div class="form-group">
         <label for="password">Password:</label> 
-        <input type="password" class="form-control" id="password" placeholder="Password" required>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
     </div>
 
 {% endblock %}
@@ -29,6 +29,6 @@
 
 {% block alternateInput %}
     <hr>
-    <button type="button" class="btn btn-half btn-half-left btn-secondary">Forgot Password</button>
-    <button type="button" class="btn btn-half btn-secondary">Sign-up</button>
+    <button type="button" class="btn btn-half btn-half-left btn-secondary" href="{% url 'password_reset' %}">Forgot Password</button>
+    <button type="button" class="btn btn-half btn-secondary" href="{% url 'accounts:signup' %}">Sign-up</button>
 {% endblock %}
