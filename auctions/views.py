@@ -23,6 +23,7 @@ def profile(request):
         recentBidList = request.user.bid_set.order_by('-date')[:5]
 
         all_auctions_list = Auction.objects.filter().order_by('auction_id')
+        # all_auctions_list = request.user.auction_set.order_by('auction_id')
 
         context = {
             'all_auctions_list': all_auctions_list,
@@ -34,6 +35,29 @@ def profile(request):
     except AttributeError:
         print("The user is not logged in")
         return redirect('login')
+
+
+@login_required
+def explore(request):
+    try:
+        if not request.user.profile.name or not request.user.profile.email:
+            return redirect('auctions:editProfile')
+
+        all_auctions_list = Auction.objects.filter().order_by('auction_id')
+
+        active_auction = request.session.get('clicked_auction')
+        # No idea what I'm doing, apparently.
+
+        context = {
+            'all_auctions_list': all_auctions_list,
+            'active_auction': active_auction,
+        }
+        return render(request, 'auctions/explore.html', context)
+    
+    except AttributeError:
+        print("The user is not logged in")
+        return redirect('login')
+
 
 
 @login_required
