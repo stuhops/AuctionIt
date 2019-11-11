@@ -14,7 +14,7 @@
 #####Cookies
 - https://docs.djangoproject.com/en/2.2/topics/http/sessions/
 
-####Extending the base user model
+#####Extending the base user model
 - https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#proxy
 
 
@@ -26,3 +26,8 @@
 ###Database fix
 #####Database migrations not resetting
 - https://stackoverflow.com/questions/29253399/how-to-reset-migrations-in-django-1-7
+
+
+###Styling
+#####Styling Django Forms
+- https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html

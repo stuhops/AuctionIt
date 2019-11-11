@@ -1,6 +1,11 @@
 <!-- templates/navbar.html -->
 {% extends 'base.html' %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
+{% endblock %}
+
 {% block content %}
     {% load static %}
     <nav class="navbar navbar-expand-md navbar-light">
