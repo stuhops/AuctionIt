@@ -67,6 +67,7 @@ class Item(models.Model):
 class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    auctions = models.ManyToManyField(Auction, null=True)
 
     # Member Variables
     name = models.CharField(max_length=128)
