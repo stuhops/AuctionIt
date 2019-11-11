@@ -11,17 +11,19 @@
 {% block content %}
     <div class="container container-forms">
         <div class="m-4">
-            <img src="logo-med.png" class="mx-auto d-box img-fluid">
+            <img src="{% static 'auctions/images/logo/logo-med.png' %}" class="mx-auto d-block img-fluid">
         </div>
         <div class="container-forms-bordered">
             <div class="m-4">
                 <form method="post">
                     {% csrf_token %}
                     <h3 class="text-center">{% block header %}Header{% endblock %}</h3>
-                    <p class="text-center">{% block headerText %}Header text{% endblock %}</p>
+                    <p class="text-center">{% block headerText %}{% endblock %}</p>
 
-                    {% block formContent %}
-                    {% endblock %}
+                    <div class="form-group">
+                        {% block formContent %}
+                        {% endblock %}
+                    </div>
 
                     <div class="mt-5">
                         <button type="submit" class="btn btn-block btn-success">{% block onSuccess %}Submit{% endblock %}</button>

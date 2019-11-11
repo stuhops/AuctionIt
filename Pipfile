@@ -11,6 +11,7 @@ django-phonenumber-field = "*"
 django-extensions = "*"
 django-stdimage = "*"
 phonenumbers = "*"
+django-widget-tweaks = "*"
 
 [requires]
 python_version = "3.6"

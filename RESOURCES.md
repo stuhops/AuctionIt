@@ -20,3 +20,8 @@
 ###Explore Tab
 #####Infinite Scroll
 - https://simpleisbetterthancomplex.com/tutorial/2017/03/13/how-to-create-infinite-scroll-with-django.html
+
+
+###Styling
+#####Styling Django Forms
+- https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html
