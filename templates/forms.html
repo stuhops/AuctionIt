@@ -15,7 +15,11 @@
         </div>
         <div class="container-forms-bordered">
             <div class="m-4">
-                <form>
+                <form method="post">
+                    {% csrf_token %}
+                    <h3 class="text-center">{% block header %}Header{% endblock %}</h3>
+                    <p class="text-center">{% block headerText %}Header text{% endblock %}</p>
+
                     {% block formContent %}
                     {% endblock %}
 
