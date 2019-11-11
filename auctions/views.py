@@ -37,6 +37,20 @@ def profile(request):
 
 
 @login_required
+def explore(request):
+    try:
+        if not request.user.profile.name or not request.user.profile.email:
+            return redirect('auctions:editProfile')
+            
+        return render(request, 'auctions/explore.html')
+    
+    except AttributeError:
+        print("The user is not logged in")
+        return redirect('login')
+
+
+
+@login_required
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     item.isSold()
