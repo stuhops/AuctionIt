@@ -2,23 +2,14 @@
 
 {% block title %}Login{% endblock %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
+    <style>.container-forms { width: 396px; }</style>
+{% endblock %}
+
 {% block header %}Sign in{% endblock %}
 {% block headerText %}One account, unlimited auctions{% endblock %}
-
-{% block formContent %}
-
-    <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-    </div>
-
-    <br />
-    <div class="form-group">
-        <label for="password">Password:</label> 
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-    </div>
-
-{% endblock %}
 
 {% block submitBtnText %}Sign In{% endblock %}
 {% block submitBtnSubtext %}

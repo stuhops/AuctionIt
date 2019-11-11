@@ -1,18 +1,14 @@
 <!-- templates/signup.html -->
-{% extends 'base.html' %}
+{% extends 'forms.html' %}
 
 {% block title %}Sign Up{% endblock %}
 
-{% block head %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
-{% endblock %}
+{% block header %}Sign up{% endblock %}
+{% block headerText %}One account, unlimited auctions{% endblock %}
 
-{% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+{% block submitBtnText %}Sign up{% endblock %}
+{% block submitBtnSubtext %}
+    By clicking Sign up, you agree to our 
+    <br>Terms and have read and acknowledge our 
+    <br>Privacy Statement.
 {% endblock %}
