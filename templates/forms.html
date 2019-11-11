@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Forms Template{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="forms.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container container-forms">
+        <div class="m-4">
+            <img src="logo-med.png" class="mx-auto d-box img-fluid">
+        </div>
+        <div class="container-forms-bordered">
+            <div class="m-4">
+                <form>
+                    <h3 class="text-center">Sign in</h3>
+                    <p class="text-center">One account for every auction.</p>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label for="password">Password:</label> 
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-block btn-success">Sign In</button>
+                        <p class="text-center small">
+                            By clicking Sign In, you agree to our 
+                            <br>Terms and have read and acknowledge our 
+                            <br>Privacy Statement.
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <button type="button" class="btn btn-half btn-half-left btn-secondary">Forgot Password</button>
+                    <button type="button" class="btn btn-half btn-secondary">Sign-up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
