@@ -317,19 +317,6 @@ input[type=submit]:hover {
     margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
 
-.auction-heading {
-    text-align: center;
-    font-size: 200%;
-    color: white;
-    background-color: #f44336;
-}
-
-.category-heading {
-    text-align: center;
-    font-size: 150%;
-    color: white;
-    background-color: blue;
-}
 
 .messages {
     text-shadow: 1px 1px 2px black;
