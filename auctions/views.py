@@ -87,14 +87,14 @@ def codes(request):
     ipAdress = s.getsockname()[0]
     s.close()
 
-    #get port
+    # get port
     port = request.META['SERVER_PORT']
 
-    #get Item list
+    # get Item list
     items = Item.objects.all()
 
     return render(request, 'auctions/codes.html', {
         "ipAdress": ipAdress,
         "port": port,
         "items": items,
-    }) 
+    })
