@@ -9,4 +9,5 @@ urlpatterns = [
     path('profile/setup/', views.editProfile, name='editProfile'),
     path('item/<int:item_id>/', views.item, name='item'),
     path('codes', views.codes, name='codes'), 
+    path('explore', views.explore, name='explore'),
 ]
