@@ -52,7 +52,7 @@ def explore(request):
             'user_auctions': user_auctions,
         }
         return render(request, 'auctions/explore.html', context)
-    
+
     except AttributeError:
         print("The user is not logged in")
         return redirect('login')
@@ -74,7 +74,8 @@ def item(request, item_id):
             'bid_list': bid_list,
             })
     else:
-        if float(selected_bid) > item.current_price and not item.sold and not item.hidden:
+        if float(selected_bid) > item.current_price and not item.sold \
+                                                    and not item.hidden:
             bid = Bid(item=item, bidder=request.user, price=selected_bid,
                       date=datetime.datetime.now())
             item.current_price = selected_bid  # TODO: Make a new bid
@@ -94,7 +95,8 @@ def item(request, item_id):
 @login_required
 def editProfile(request):
     if request.method == 'POST':
-        form = EditProfile(request.POST, request.FILES or None, instance=request.user.profile)
+        form = EditProfile(request.POST, request.FILES or None,
+                           instance=request.user.profile)
         if form.is_valid():
             form.save()
             print("Saved")
