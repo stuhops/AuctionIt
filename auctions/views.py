@@ -84,9 +84,9 @@ def item(request, item_id):
                              % item.current_price)
         else:
             messages.warning(request, 'Your $%s bid was ' % selected_bid +
-                           'not recorded. An error happened while processing ' +
-                           'your request.'
-                           )
+                             'not recorded. An error happened while processing ' +
+                             'your request.'
+                             )
 
         return redirect('auctions:item', item.item_id)
 
