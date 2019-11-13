@@ -64,7 +64,7 @@ class Item(models.Model):
     def getPrimaryImage(self):
         image_list = self.itemimage_set.order_by('pk')
         if len(image_list) > 0:
-            return image_list[0].getImageThumbnail
+            return image_list[0].getImageThumbnail()
         else:
             return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
 
