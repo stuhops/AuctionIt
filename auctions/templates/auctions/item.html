@@ -19,9 +19,9 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="profilePicture">
-          <img class="rounded" src="{{ primaryImage.getImageThumbnail }}">
+          <img class="rounded" src="{{ primary_image.getImageThumbnail }}">
           {% for image in image_list %}
-            <img class="rounded" src="{{ image.getImageThumbnail }}">
+            <img class="rounded img-preview" src="{{ image.getImageThumbnail }}">
           {% endfor %}
         </div>
         <p>Carousel of other images of the item</p>

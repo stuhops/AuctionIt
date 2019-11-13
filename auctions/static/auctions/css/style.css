@@ -317,29 +317,7 @@ input[type=submit]:hover {
     margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
 
-
-.messages {
-    text-shadow: 1px 1px 2px black;
-    color:       white;
-    font-family: 'helvetica neue', helvetica, sans-serif;
-    letter-spacing: 1px;
-    text-align: center;
-    padding: 3px 10px;
-    margin: 10px;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
+.img-preview {
+    width: 50px;
+    height: 50px;
 }
-
-.error {
-    border-color: rgb(255,0,0);
-    background:   rgb(180,60,60);
-    box-shadow: 1px 1px 2px rgba(200,0,0,0.4);
-}
-
-.success {
-    border-color: rgb(0,255,0);
-    background:   rgb(60,180,60);
-    box-shadow: 1px 1px 2px rgba(0,200,0,0.4);
-}
-
