@@ -115,5 +115,12 @@ class Bid(models.Model):
 class ItemImage(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    image = JPEGField(upload_to='UploadedImages/', variations={
-        'thumbnail': {"width": 100, "height": 100, "crop": True}})
+    image = JPEGField(upload_to='images/', variations={
+        'thumbnail': {"width": 240, "height": 240, "crop": True}},
+        delete_orphans=True)
+
+    def getImageThumbnail(self):
+        if self.image:
+            return self.image.thumbnail.url
+        else:
+            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
