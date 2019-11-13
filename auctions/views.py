@@ -69,10 +69,11 @@ def item(request, item_id):
             raise KeyError("Item is sold")
     except (KeyError):
         bid_list = item.bid_set.order_by('-price')[:3]
-        image_list = item.itemimage_set.order_by('pk')[0]
+        image_list = item.itemimage_set.order_by('pk')
         return render(request, 'auctions/item.html', {
             'item': item,
             'bid_list': bid_list,
+            'primary_image': image_list[0],
             'image_list': image_list,
             })
     else:

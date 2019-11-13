@@ -19,7 +19,10 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="profilePicture">
-          <img src="{{ image_list.getImageThumbnail }}">
+          <img class="rounded" src="{{ primaryImage.getImageThumbnail }}">
+          {% for image in image_list %}
+            <img class="rounded" src="{{ image.getImageThumbnail }}">
+          {% endfor %}
         </div>
         <p>Carousel of other images of the item</p>
         <h3>Recent Bidders and prices</h3>
