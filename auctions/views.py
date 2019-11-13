@@ -59,7 +59,6 @@ def explore(request):
         return redirect('login')
 
 
-
 @login_required
 def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)

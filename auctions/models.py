@@ -67,15 +67,16 @@ class Item(models.Model):
 class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    auctions = models.ManyToManyField(Auction, null=True)
+    auctions = models.ManyToManyField(Auction)
 
     # Member Variables
     name = models.CharField(max_length=128)
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
-    image = JPEGField(blank=True, upload_to='UploadedImages/',
-                      variations={'thumbnail': {"width": 100, "height": 100,
-                                  "crop": True}})
+    image = JPEGField(blank=True, upload_to='images/',
+                      variations={'thumbnail': {"width": 240, "height": 240,
+                                  "crop": True}},
+                      delete_orphans=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
