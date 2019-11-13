@@ -19,6 +19,12 @@ def profile(request):
         if not request.user.profile.name or not request.user.profile.email:
             return redirect('auctions:editProfile')
 
+        # image_list = item.itemimage_set.order_by('pk')
+        # if len(image_list) > 0:
+        #     primary_image = image_list[0].getImageThumbnail
+        # else:
+        #     primary_image = settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+
         # JAREN - CURRENTLY WORKING ON THIS
         # # # # #
         recentBidList = request.user.bid_set.order_by('-date')[:5]
@@ -87,6 +93,7 @@ def item(request, item_id):
             bid = Bid(item=item, bidder=request.user, price=selected_bid,
                       date=datetime.datetime.now())
             item.current_price = selected_bid  # TODO: Make a new bid
+            request.user.profile.set_bid_on(item)
             bid.save()
             item.save()
             messages.success(request, 'Your $%s bid was successfully recorded.'

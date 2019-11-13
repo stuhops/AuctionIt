@@ -69,6 +69,7 @@ class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     auctions = models.ManyToManyField(Auction)
+    bid_on = models.ManyToManyField(Item)
 
     # Member Variables
     name = models.CharField(max_length=128)
@@ -93,6 +94,11 @@ class Profile(models.Model):
             return self.image.thumbnail.url
         else:
             return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+
+    def set_bid_on(self, item):
+        if not self.bid_on.filter(pk=item.pk).exists():
+            self.bid_on.add(item)
+        return
 
     def __str__(self):
         return self.name
