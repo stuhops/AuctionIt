@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from stdimage import JPEGField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
 
 
 class Auction(models.Model):
@@ -86,6 +87,12 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+    def getImageThumbnail(self):
+        if self.image:
+            return self.image.thumbnail.url
+        else:
+            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
 
     def __str__(self):
         return self.name

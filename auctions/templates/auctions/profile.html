@@ -17,10 +17,8 @@
         <h2>{{ request.user.profile.name }}</h2>
         <h5>Photo of me:</h5>
         <div class="profilePicture">
-          {% if }
           <!-- TODO: Change this so that it will display the default image if there is no uploaded image -->
-          <!-- <img class="rounded" src="{% static 'auctions/images/profile/defaultProfilePicture.jpg' %}"> -->
-          <img class="rounded" src="{{ request.user.profile.image.thumbnail.url }}">
+          <img class="rounded" src="{{ request.user.profile.getImageThumbnail }}">
         </div>
         <ul class="nav nav-pills flex-column">
           <li class="nav-item">
