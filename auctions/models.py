@@ -61,6 +61,13 @@ class Item(models.Model):
 
         return self.sold
 
+    def getPrimaryImage(self):
+        image_list = self.itemimage_set.order_by('pk')
+        if len(image_list) > 0:
+            return image_list[0].getImageThumbnail()
+        else:
+            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+
     def __str__(self):
         return self.name
 
@@ -69,6 +76,7 @@ class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     auctions = models.ManyToManyField(Auction)
+    bid_on = models.ManyToManyField(Item)
 
     # Member Variables
     name = models.CharField(max_length=128)
@@ -93,6 +101,11 @@ class Profile(models.Model):
             return self.image.thumbnail.url
         else:
             return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+
+    def set_bid_on(self, item):
+        if not self.bid_on.filter(pk=item.pk).exists():
+            self.bid_on.add(item)
+        return
 
     def __str__(self):
         return self.name
