@@ -45,12 +45,11 @@ def explore(request):
 
         all_auctions_list = Auction.objects.filter().order_by('auction_id')
 
-        active_auction = request.session.get('clicked_auction')
-        # No idea what I'm doing, apparently.
+        user_auctions = request.user.profile.auctions.all()
 
         context = {
             'all_auctions_list': all_auctions_list,
-            'active_auction': active_auction,
+            'user_auctions': user_auctions,
         }
         return render(request, 'auctions/explore.html', context)
     

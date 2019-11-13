@@ -5,7 +5,7 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/exploreStyle.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}"> -->
 
 {% endblock %}
 
@@ -18,7 +18,7 @@
                 Select Auction to Display:
             </div>
             <br>
-            {% for auction in all_auctions_list %}
+            {% for auction in user_auctions %}
                 <button class="auction-listing">{{ auction.auction_id }}</button>
             {% endfor %}
         </div>
