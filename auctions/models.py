@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from stdimage import JPEGField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
 
 
 class Auction(models.Model):
@@ -67,15 +68,16 @@ class Item(models.Model):
 class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    auctions = models.ManyToManyField(Auction, null=True)
+    auctions = models.ManyToManyField(Auction)
 
     # Member Variables
     name = models.CharField(max_length=128)
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
-    image = JPEGField(blank=True, upload_to='UploadedImages/',
-                      variations={'thumbnail': {"width": 100, "height": 100,
-                                  "crop": True}})
+    image = JPEGField(blank=True, upload_to='images/',
+                      variations={'thumbnail': {"width": 240, "height": 240,
+                                  "crop": True}},
+                      delete_orphans=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -85,6 +87,12 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+    def getImageThumbnail(self):
+        if self.image:
+            return self.image.thumbnail.url
+        else:
+            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
 
     def __str__(self):
         return self.name
