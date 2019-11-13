@@ -24,6 +24,7 @@ def profile(request):
         #     primary_image = image_list[0].getImageThumbnail
         # else:
         #     primary_image = settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+        bid_on_list = request.user.profile.bid_on.all()
 
         # JAREN - CURRENTLY WORKING ON THIS
         # # # # #
@@ -35,6 +36,7 @@ def profile(request):
         context = {
             'all_auctions_list': all_auctions_list,
             'recentBidList': recentBidList,
+            'bid_on_list': bid_on_list,
             }
 
         return render(request, 'auctions/profile.html', context)
