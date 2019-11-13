@@ -31,3 +31,8 @@
 ###Styling
 #####Styling Django Forms
 - https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html
+
+
+###Images
+#####Uploading Images
+- https://www.codingforentrepreneurs.com/projects/try-django-2-2/image-field-and-uploading-images

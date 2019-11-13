@@ -16,7 +16,7 @@
         </div>
         <div class="container-forms-bordered">
             <div class="m-4">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <h3 class="text-center">{% block header %}Header{% endblock %}</h3>
                     <p class="text-center">{% block headerText %}{% endblock %}</p>

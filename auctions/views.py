@@ -94,7 +94,7 @@ def item(request, item_id):
 @login_required
 def editProfile(request):
     if request.method == 'POST':
-        form = EditProfile(request.POST, instance=request.user.profile)
+        form = EditProfile(request.POST, request.FILES or None, instance=request.user.profile)
         if form.is_valid():
             form.save()
             print("Saved")
