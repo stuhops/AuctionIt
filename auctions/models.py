@@ -66,7 +66,7 @@ class Item(models.Model):
         if len(image_list) > 0:
             return image_list[0].getImageThumbnail()
         else:
-            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+            return settings.MEDIA_URL + "/images/defaultItemImage.jpg"
 
     def __str__(self):
         return self.name

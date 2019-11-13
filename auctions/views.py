@@ -82,7 +82,7 @@ def item(request, item_id):
         if len(image_list) > 0:
             primary_image = image_list[0].getImageThumbnail
         else:
-            primary_image = settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+            primary_image = settings.MEDIA_URL + "/images/defaultItemImage.jpg"
         return render(request, 'auctions/item.html', {
             'item': item,
             'bid_list': bid_list,

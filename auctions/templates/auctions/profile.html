@@ -68,7 +68,7 @@
             <div class="cover-container">
               {% for item in bid_on_list %}
                 <a href="{% url 'auctions:item' item.pk %}" class="cover-item bg-success">
-                  <img class="fit-center" src="{{ item.getPrimaryImage }}">
+                  <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
                 </a>
               {% endfor %}
             </div>
