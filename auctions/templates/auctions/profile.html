@@ -60,8 +60,10 @@
             </div>
           </div>
         </div>
+
         <br>
-        <h2>Items open for Bidding</h2>
+
+        <h2>Items you have bid on</h2>
         <h5>The green backgrounds are ones you are currently winning</h5>
         <div class="row-fluid">
           <div class="col-lg-12 col-md-10 ">
@@ -69,6 +71,8 @@
               {% for item in bid_on_list %}
                 <a href="{% url 'auctions:item' item.pk %}" class="cover-item bg-success">
                   <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                  <h6>{{ item.name }}</h6>
+                  <p>{{ item.current_price }}</p>
                 </a>
               {% endfor %}
             </div>
