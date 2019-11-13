@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import EditProfile
 import datetime
 import socket
+from django.conf import settings
 
 from .models import Auction, Item, Bid
 
@@ -70,10 +71,14 @@ def item(request, item_id):
     except (KeyError):
         bid_list = item.bid_set.order_by('-price')[:3]
         image_list = item.itemimage_set.order_by('pk')
+        if len(image_list) > 0:
+            primary_image = image_list[0].getImageThumbnail
+        else:
+            primary_image = settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
         return render(request, 'auctions/item.html', {
             'item': item,
             'bid_list': bid_list,
-            'primary_image': image_list[0],
+            'primary_image': primary_image,
             'image_list': image_list,
             })
     else:

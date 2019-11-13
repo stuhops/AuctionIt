@@ -120,7 +120,4 @@ class ItemImage(models.Model):
         delete_orphans=True)
 
     def getImageThumbnail(self):
-        if self.image:
-            return self.image.thumbnail.url
-        else:
-            return settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
+        return self.image.thumbnail.url
