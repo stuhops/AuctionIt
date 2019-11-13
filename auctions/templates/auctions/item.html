@@ -11,7 +11,7 @@
   {% load static %}
   {% if messages %}
     {% for message in messages %}
-    <div {% if message.tags %} class="messages {{ message.tags }}"{% endif %}>{{ message }}</li>
+    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
     </div>
     {% endfor %}
   {% endif %}

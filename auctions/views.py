@@ -83,7 +83,7 @@ def item(request, item_id):
             messages.success(request, 'Your $%s bid was successfully recorded.'
                              % item.current_price)
         else:
-            messages.error(request, 'Your $%s bid was ' % selected_bid +
+            messages.warning(request, 'Your $%s bid was ' % selected_bid +
                            'not recorded. An error happened while processing ' +
                            'your request.'
                            )
