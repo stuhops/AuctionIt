@@ -19,16 +19,14 @@ def profile(request):
         return redirect('auctions:editProfile')
 
     items_won_list = list()
-    bid_on_list = request.user.profile.bid_on.order_by('end_date')
+    bid_on_list = list()
+    user_items = request.user.profile.bid_on.order_by('end_date')
 
-    for item in bid_on_list:
-        if item.isSold():
-            if item.whoWon() == request.user:
-                items_won_list.append(item)
-                print("There is an item that you won")
-                print(item)
+    for item in user_items:
+        if item.isSold() and item.whoWon() == request.user:
+            items_won_list.append(item)
         else:
-            pass
+            bid_on_list.append(item)
 
     # JAREN - CURRENTLY WORKING ON THIS
     # # # # #
