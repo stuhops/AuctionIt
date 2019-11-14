@@ -23,8 +23,12 @@ def profile(request):
     user_items = request.user.profile.bid_on.order_by('end_date')
 
     for item in user_items:
-        if item.isSold() and item.whoWon() == request.user:
-            items_won_list.append(item)
+        if item.isSold():
+            if item.whoWon() == request.user:
+                items_won_list.append(item)
+            else:
+                # Should we remove the item from the bid_list here or should we leave it forever?
+                pass
         else:
             bid_on_list.append(item)
 
