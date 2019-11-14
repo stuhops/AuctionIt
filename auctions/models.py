@@ -42,6 +42,7 @@ class Item(models.Model):
     end_date = models.DateTimeField('end date')
     sold = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+    # winner = models.ForeignKey(Profile)
 
     def getTimeDiff(self):
         dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
@@ -56,6 +57,7 @@ class Item(models.Model):
         if (self.end_date.replace(tzinfo=None) -
                 datetime.datetime.now()).total_seconds() < 0:
             self.sold = True
+            self.whoWon()
         else:
             self.sold = False
 
@@ -68,6 +70,11 @@ class Item(models.Model):
         else:
             return settings.MEDIA_URL + "/images/defaultItemImage.jpg"
 
+    def whoWon(self):
+        winner = self.bid_set.order_by('-price')[0].bidder
+        # winner.setWon(self)
+        return winner
+
     def __str__(self):
         return self.name
 
@@ -76,7 +83,7 @@ class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     auctions = models.ManyToManyField(Auction)
-    bid_on = models.ManyToManyField(Item)
+    bid_on = models.ManyToManyField(Item, related_name="bidders")
 
     # Member Variables
     name = models.CharField(max_length=128)
@@ -106,6 +113,11 @@ class Profile(models.Model):
         if not self.bid_on.filter(pk=item.pk).exists():
             self.bid_on.add(item)
         return
+
+    # def setWon(self, item):
+    #     if not self.items_won.filter(pk=item.pk).exists():
+    #         self.items_won.add(item)
+    #     return
 
     def __str__(self):
         return self.name

@@ -19,12 +19,8 @@ def profile(request):
         if not request.user.profile.name or not request.user.profile.email:
             return redirect('auctions:editProfile')
 
-        # image_list = item.itemimage_set.order_by('pk')
-        # if len(image_list) > 0:
-        #     primary_image = image_list[0].getImageThumbnail
-        # else:
-        #     primary_image = settings.MEDIA_URL + "/images/defaultProfilePicture.jpg"
-        bid_on_list = request.user.profile.bid_on.all()
+        items_won_list = request.user.profile.items_won.order_by('-end_date')
+        bid_on_list = request.user.profile.bid_on.order_by('end_date')
 
         # JAREN - CURRENTLY WORKING ON THIS
         # # # # #
@@ -36,6 +32,7 @@ def profile(request):
         context = {
             'all_auctions_list': all_auctions_list,
             'recentBidList': recentBidList,
+            'items_won_list': items_won_list,
             'bid_on_list': bid_on_list,
             }
 
