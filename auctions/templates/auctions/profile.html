@@ -38,62 +38,68 @@
         <hr class="d-sm-none">
       </div>
       <div class="col-sm-8">
-        <h2>Items Won</h2>
-        <h5>The green borders are ones you need to pick up</h5>
-        <div class="row-fluid">
-          <div class="col-lg-12 col-md-10 ">
-            <div class="cover-container">
-              {% for item in items_won_list %}
-                <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+        {% if items_won_list %}
+          <h2>Items Won</h2>
+          <h5>The green borders are ones you need to pick up</h5>
+          <div class="row-fluid">
+            <div class="col-lg-12 col-md-10 ">
+              <div class="cover-container">
+                {% for item in items_won_list %}
+                  <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
 
-                  <script>
-                    if('{{ item.picked_up }}' == 'False') {
-                      document.getElementById('won{{ forloop.counter }}').classList.add('border-success');
-                    }
-                    else {
-                      document.getElementById('won{{ forloop.counter }}').classList.add('border-light');
-                    }
-                  </script>
+                    <script>
+                      if('{{ item.picked_up }}' == 'False') {
+                        document.getElementById('won{{ forloop.counter }}').classList.add('border-success');
+                      }
+                      else {
+                        document.getElementById('won{{ forloop.counter }}').classList.add('border-light');
+                      }
+                    </script>
 
-                  <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
-                  <h6>{{ item.name }}</h6>
-                  <p>{{ item.current_price }}</p>
-                </a>
-              {% endfor %}
+                    <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                    <h6>{{ item.name }}</h6>
+                    <p>{{ item.current_price }}</p>
+                  </a>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
+        {% endif %}
 
         <br>
 
-        <h2>Items you have bid on</h2>
-        <h5>The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
-        <div class="row-fluid">
-          <div class="col-lg-12 col-md-10 ">
-            <div class="cover-container">
-              {% for item in bid_on_list %}
-                <a id="bid{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+        {% if bid_on_list %}
+          <h2>Items you have bid on</h2>
+          <h5>The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
+          <div class="row-fluid">
+            <div class="col-lg-12 col-md-10 ">
+              <div class="cover-container">
+                {% for item in bid_on_list %}
+                  <a id="bid{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
 
-                  <script>
-                    if('{{ item.whoWon }}' == '{{ request.user }}') {
-                      document.getElementById('bid{{ forloop.counter }}').classList.add('border-success');
-                    }
-                    else if('{{ item.isSold }}' == 'True') {
-                      document.getElementById('bid{{ forloop.counter }}').classList.add('border-danger');
-                    }
-                    else {
-                      document.getElementById('bid{{ forloop.counter }}').classList.add('border-warning');
-                    }
-                  </script>
+                    <script>
+                      if('{{ item.whoWon }}' == '{{ request.user }}') {
+                        document.getElementById('bid{{ forloop.counter }}').classList.add('border-success');
+                      }
+                      else if('{{ item.isSold }}' == 'True') {
+                        document.getElementById('bid{{ forloop.counter }}').classList.add('border-danger');
+                      }
+                      else {
+                        document.getElementById('bid{{ forloop.counter }}').classList.add('border-warning');
+                      }
+                    </script>
 
-                  <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
-                  <h6>{{ item.name }}</h6>
-                  <p>{{ item.current_price }}</p>
-                </a>
-              {% endfor %}
+                    <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                    <h6>{{ item.name }}</h6>
+                    <p>{{ item.current_price }}</p>
+                  </a>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
+        {% else %}
+          <h1>Looks like you need to start bidding! Tap "Explore" to get started.</h1>
+        {% endif %}
       </div>
     </div>
   </div>
