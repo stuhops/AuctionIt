@@ -47,11 +47,11 @@
                 <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
 
                   <script>
-                    if('{{ item.whoWon }}' == '{{ request.user }}') {
+                    if('{{ item.picked_up }}' == 'False') {
                       document.getElementById('won{{ forloop.counter }}').classList.add('border-success');
                     }
                     else {
-                      document.getElementById('won{{ forloop.counter }}').classList.add('border-secondary');
+                      document.getElementById('won{{ forloop.counter }}').classList.add('border-light');
                     }
                   </script>
 
