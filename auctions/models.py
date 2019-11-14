@@ -42,6 +42,7 @@ class Item(models.Model):
     end_date = models.DateTimeField('end date')
     sold = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+    # picked_up = models.BooleanField(default=False)
     # winner = models.ForeignKey(Profile)
 
     def getTimeDiff(self):
