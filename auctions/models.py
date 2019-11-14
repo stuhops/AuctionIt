@@ -72,9 +72,13 @@ class Item(models.Model):
             return settings.MEDIA_URL + "/images/defaultItemImage.jpg"
 
     def whoWon(self):
-        winner = self.bid_set.order_by('-price')[0].bidder
-        # winner.setWon(self)
-        return winner
+        try:
+            winner = self.bid_set.order_by('-price')[0].bidder
+            # winner.setWon(self)
+            return winner
+        except (Exception):
+            print(Exception)
+            return None
 
     def __str__(self):
         return self.name

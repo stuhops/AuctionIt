@@ -74,6 +74,9 @@ def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     item.isSold()
 
+    shuffled_auction = item.auction.items.order_by('?')[:20]
+    print(shuffled_auction)
+
     try:
         selected_bid = request.POST['bid']
         if item.sold:
@@ -90,6 +93,7 @@ def item(request, item_id):
             'bid_list': bid_list,
             'primary_image': primary_image,
             'image_list': image_list,
+            'shuffled_auction': shuffled_auction,
             })
     else:
         if float(selected_bid) > item.current_price and not item.sold \

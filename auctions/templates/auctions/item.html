@@ -62,19 +62,23 @@
       <div class="row-fluid">
         <div class="col-lg-12 col-md-10 ">
           <div class="cover-container">
-            <!-- START PANEL -->
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
-            <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
+            {% for item in shuffled_auction %}
+              <a id="shuffled{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+
+                <script>
+                  if('{{ item.whoWon }}' == '{{ request.user }}') {
+                    document.getElementById('shuffled{{ forloop.counter }}').classList.add('border-success');
+                  }
+                  else {
+                    document.getElementById('shuffled{{ forloop.counter }}').classList.add('border-secondary');
+                  }
+                </script>
+
+                <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                <h6>{{ item.name }}</h6>
+                <p>{{ item.current_price }}</p>
+              </a>
+            {% endfor %}
           </div>
         </div>
       </div>
