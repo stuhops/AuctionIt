@@ -83,7 +83,7 @@ class Profile(models.Model):
     # Dependencies
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     auctions = models.ManyToManyField(Auction)
-    bid_on = models.ManyToManyField(Item, related_name="bidders")
+    bid_on = models.ManyToManyField(Item)
 
     # Member Variables
     name = models.CharField(max_length=128)

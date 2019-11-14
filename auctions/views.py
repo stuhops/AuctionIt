@@ -15,32 +15,36 @@ def index(request):
 
 @login_required
 def profile(request):
-    try:
-        if not request.user.profile.name or not request.user.profile.email:
-            return redirect('auctions:editProfile')
+    if not request.user.profile.name or not request.user.profile.email:
+        return redirect('auctions:editProfile')
 
-        items_won_list = request.user.profile.items_won.order_by('-end_date')
-        bid_on_list = request.user.profile.bid_on.order_by('end_date')
+    items_won_list = list()
+    bid_on_list = request.user.profile.bid_on.order_by('end_date')
 
-        # JAREN - CURRENTLY WORKING ON THIS
-        # # # # #
-        recentBidList = request.user.bid_set.order_by('-date')[:5]
+    for item in bid_on_list:
+        if item.isSold():
+            if item.whoWon() == request.user:
+                items_won_list.append(item)
+                print("There is an item that you won")
+                print(item)
+        else:
+            pass
 
-        all_auctions_list = Auction.objects.filter().order_by('auction_id')
-        # all_auctions_list = request.user.auction_set.order_by('auction_id')
+    # JAREN - CURRENTLY WORKING ON THIS
+    # # # # #
+    recentBidList = request.user.bid_set.order_by('-date')[:5]
 
-        context = {
-            'all_auctions_list': all_auctions_list,
-            'recentBidList': recentBidList,
-            'items_won_list': items_won_list,
-            'bid_on_list': bid_on_list,
-            }
+    all_auctions_list = Auction.objects.filter().order_by('auction_id')
+    # all_auctions_list = request.user.auction_set.order_by('auction_id')
 
-        return render(request, 'auctions/profile.html', context)
-        # # # # #
-    except AttributeError:
-        print("The user is not logged in")
-        return redirect('login')
+    context = {
+        'all_auctions_list': all_auctions_list,
+        'recentBidList': recentBidList,
+        'items_won_list': items_won_list,
+        'bid_on_list': bid_on_list,
+        }
+
+    return render(request, 'auctions/profile.html', context)
 
 
 @login_required
