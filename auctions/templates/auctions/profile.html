@@ -14,23 +14,25 @@
   <div class="container mt-4"> 
     <div class="row">
       <div class="col-sm-4">
-        <h2>{{ request.user.profile.name }}</h2>
-        <img class="rounded img-fluid profilePicture" src="{{ request.user.profile.getImageThumbnail }}">
-        <ul class="nav nav-pills flex-column" style="width: 240px;">
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
-          </li>
-        </ul>
-        <p>Some text about me</p>
-        <h3>Recent Bids</h3>
-        <ul class="nav nav-pills flex-column">
-          {% for bid in recentBidList %}
+        <div class="side-bar">
+          <h2>{{ request.user.profile.name }}</h2>
+          <img class="rounded img-fluid" src="{{ request.user.profile.getImageThumbnail }}">
+          <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'auctions:item' bid.item.pk %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+              <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
             </li>
-          {% endfor %}
-        </ul>
-        <hr class="d-sm-none">
+          </ul>
+          <p>Some text about me</p>
+          <h3>Recent Bids</h3>
+          <ul class="nav nav-pills flex-column">
+            {% for bid in recentBidList %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'auctions:item' bid.item.pk %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <hr class="d-sm-none">
+        </div>
       </div>
       <div class="col-sm-8">
         {% if items_won_list %}

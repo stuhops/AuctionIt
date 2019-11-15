@@ -15,11 +15,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <a class="nav nav-items nav-link" href="{% url 'auctions:explore' %}">
-                    Explore</a>
-                <input class="ml-auto mr-1" type="text" placeholder="Search..">
-                <button type="submit"><i class="fa fa-search"></i></button>
-                <a type="button" class="nav nav-pills nav-items nav-link active" href="{% url 'logout' %}" >Logout</a>
+                <a class="nav nav-items nav-link" href="{% url 'auctions:profile' %}" >Profile</a>
+                <a class="nav nav-items nav-link" href="{% url 'auctions:explore' %}">Explore</a>
+                <!-- TODO: Add a search component -->
+                <a class="nav nav-items nav-link" href="#" >Search</a>
+                <a class="nav nav-items nav-link" href="{% url 'logout' %}" >Logout</a>
             </div>
         </nav>
     </div>

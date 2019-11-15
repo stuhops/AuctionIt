@@ -94,7 +94,7 @@ class Profile(models.Model):
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
     image = JPEGField(blank=True, upload_to='images/',
-                      variations={'thumbnail': {"width": 240, "height": 240,
+                      variations={'thumbnail': {"width": 300, "height": 300,
                                   "crop": True}},
                       delete_orphans=True)
 
@@ -145,7 +145,7 @@ class ItemImage(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     image = JPEGField(upload_to='images/', variations={
-        'thumbnail': {"width": 240, "height": 240, "crop": True}},
+        'thumbnail': {"width": 300, "height": 300, "crop": True}},
         delete_orphans=True)
 
     def getImageThumbnail(self):
