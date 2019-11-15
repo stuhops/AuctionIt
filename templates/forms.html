@@ -6,6 +6,7 @@
 
 {% block head %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'auctions/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'forms.css' %}">
 {% endblock %}
 
@@ -48,7 +49,7 @@
                     {% endblock %}
 
                     <div class="mt-5">
-                        <button type="submit" class="btn btn-block btn-success">{% block submitBtnText %}Submit{% endblock %}</button>
+                        <button type="submit" class="btn btn-block active">{% block submitBtnText %}Submit{% endblock %}</button>
                         <p class="text-center small">{% block submitBtnSubtext %}{% endblock %}</p>
                     </div>
 
