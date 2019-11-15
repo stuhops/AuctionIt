@@ -35,8 +35,8 @@
       </div>
       <div class="col-sm-8">
         {% if items_won_list %}
-          <h2>Items Won</h2>
-          <h5>The green borders are ones you need to pick up</h5>
+          <h2 class="scroll-through-text-align">Items Won</h2>
+          <h5 class="scroll-through-text-align">The green borders are ones you need to pick up</h5>
           <div class="row-fluid">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">
@@ -52,7 +52,7 @@
                       }
                     </script>
 
-                    <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                    <img class="fit-center img-preview rounded" src="{{ item.getPrimaryImage }}">
                     <h6>{{ item.name }}</h6>
                     <p>{{ item.current_price }}</p>
                   </a>
@@ -65,8 +65,8 @@
         <br>
 
         {% if bid_on_list %}
-          <h2>Items you have bid on</h2>
-          <h5>The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
+          <h2 class="scroll-through-text-align">Items you have bid on</h2>
+          <h5 class="scroll-through-text-align">The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
           <div class="row-fluid">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">

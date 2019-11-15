@@ -1,4 +1,4 @@
-
+/* Screen alignment with sidebar */
 .side-bar {
     max-width: 240px;
 }
@@ -12,4 +12,41 @@
     .center-xs-wrapper {
         text-align: center;
     }
+}
+/* End screen alignment with sidebar */
+
+/* Sideways scroll throughs */
+.cover-container {
+    height: 180px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    width: 116px;
+    height: 158px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.fit-center {
+    display: block;
+    width: 75%;
+    height: auto;
+    overflow: hidden;
+    margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
+}
+/* End sideways scroll throughs */
+
+.scroll-through-text-align {
+    margin-left: 22px !important;
 }
