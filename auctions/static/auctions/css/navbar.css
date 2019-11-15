@@ -17,7 +17,7 @@
 
 /* Sideways scroll throughs */
 .cover-container {
-    height: 180px;
+    height: 230px;
     width: 100%;
     white-space: nowrap;
     overflow-x: scroll;
@@ -28,10 +28,11 @@
     position: relative;
     display: inline-block;
     margin: 8px 8px;
+    padding: 13px;
     box-shadow: 2px 2px 4px #bbb;
     border-top-right-radius: 4px;
-    width: 116px;
-    height: 158px;
+    width: 150px;
+    height: 200px;
     vertical-align: bottom;
     background-position: top left;
     background-repeat: no-repeat;
@@ -40,10 +41,9 @@
 
 .fit-center {
     display: block;
-    width: 75%;
+    width: 100%;
     height: auto;
     overflow: hidden;
-    margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
 
 .scroll-through-text-align {
@@ -53,24 +53,36 @@
 
 /* Colors */
 .bg-primary {
-    background-color: #262262;
+    background-color: #262262 !important;
 }
 
 .bg-info {
-    background-color: #F15A29;
+    background-color: #F15A29 !important;
+}
+
+.bg-compliment {
+    background-color: #567491 !important;
 }
 
 .active {
-    background-color: #262262;
+    background-color: #262262 !important;
+    color: white !important;
 }
 
 .text-primary {
-    color: #262262;
+    color: #262262 !important;
 }
 
 .text-info {
-    color: #F15A29;
+    color: #F15A29 !important;
 }
 
+.text-compliment {
+    color: #567491 !important;
+}
+
+a {
+    color: #F15A29 !important;
+}
 /* End colors */
 
