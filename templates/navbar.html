@@ -23,6 +23,7 @@
                 <!-- Left aligned -->
                 <!-- TODO: Add a search component -->
                 <form class="form-inline ml-auto" method="post">
+                    {% csrf_token %}
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-success active" type="submit">Search</button>
                   </form>
