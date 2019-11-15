@@ -74,8 +74,18 @@ def item(request, item_id):
     item = get_object_or_404(Item, item_id=item_id)
     item.isSold()
 
-    shuffled_auction = item.auction.items.order_by('?')[:20]
-    print(shuffled_auction)
+    EXTRA = 40
+    TOTAL = 20
+    shuffled_auction_extra = item.auction.items.order_by('?')[:EXTRA]
+
+    shuffled_auction = list()
+    for i in range(EXTRA):
+        if len(shuffled_auction) > TOTAL or i >= len(shuffled_auction_extra):
+            break
+        if not shuffled_auction_extra[i].isSold() \
+           and not shuffled_auction_extra[i].hidden \
+           and not shuffled_auction_extra[i].pk == item.pk:
+            shuffled_auction.append(shuffled_auction_extra[i])
 
     try:
         selected_bid = request.POST['bid']
