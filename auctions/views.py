@@ -70,8 +70,8 @@ def explore(request):
 
 
 @login_required
-def item(request, item_id):
-    item = get_object_or_404(Item, item_id=item_id)
+def item(request, item_pk):
+    item = get_object_or_404(Item, pk=item_pk)
     item.isSold()
 
     EXTRA = 40
@@ -122,7 +122,7 @@ def item(request, item_id):
                              'your request.'
                              )
 
-        return redirect('auctions:item', item.item_id)
+        return redirect('auctions:item', item.pk)
 
 
 @login_required

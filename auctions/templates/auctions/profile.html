@@ -31,7 +31,7 @@
         <ul class="nav nav-pills flex-column">
           {% for bid in recentBidList %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'auctions:item' bid.item.item_id %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+              <a class="nav-link" href="{% url 'auctions:item' bid.item.pk %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
             </li>
           {% endfor %}
         </ul>
