@@ -33,7 +33,7 @@ def profile(request):
 
     # JAREN - CURRENTLY WORKING ON THIS
     # # # # #
-    recentBidList = request.user.bid_set.order_by('-date')[:4]
+    recentBidList = request.user.bid_set.order_by('-date')[:5]
 
     all_auctions_list = Auction.objects.filter().order_by('auction_id')
     # all_auctions_list = request.user.auction_set.order_by('auction_id')
