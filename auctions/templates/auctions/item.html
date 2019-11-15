@@ -48,9 +48,9 @@
         <h2>Bid</h2>
         <form action="{% url 'auctions:item' item.id %}" method="POST">
           {% csrf_token %}
-          <input type="submit" class="btn btn-lrg btn-block bg-success" name="bid" id="1" label="Bid ${{ item.current_price|add:'1' }}" value="{{ item.current_price|add:'1' }}">
-          <input type="submit" class="btn btn-lrg btn-block bg-success" name="bid" id="5" value="{{ item.current_price|add:'5' }}">
-          <input type="submit" class="btn btn-lrg btn-block bg-success" name="bid" id="10" value="{{ item.current_price|add:'10' }}">
+          <input type="submit" class="btn btn-lrg btn-block bg-success active" name="bid" id="1" label="Bid ${{ item.current_price|add:'1' }}" value="{{ item.current_price|add:'1' }}">
+          <input type="submit" class="btn btn-lrg btn-block bg-success active" name="bid" id="5" value="{{ item.current_price|add:'5' }}">
+          <input type="submit" class="btn btn-lrg btn-block bg-success active" name="bid" id="10" value="{{ item.current_price|add:'10' }}">
         </form>
         {% endif %}
       </div>
