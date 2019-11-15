@@ -16,3 +16,14 @@
 //     }
 //   });
 // } 
+
+function handleAuctionClick(inputAuctionID) {
+    var headingID = "auction_heading_" + inputAuctionID;
+    console.log("Looking for ID: " + headingID);
+    var auctionHeading = document.getElementById(headingID);
+    auctionHeading.setAttribute("style", "background-color: red;");
+
+    var auctionListingID = "auction_" + inputAuctionID;
+    var auctionListing = document.getElementById(auctionListingID);
+    auctionListing.setAttribute("style", "visiblility: visible;")
+}
