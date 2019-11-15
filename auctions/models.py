@@ -34,7 +34,6 @@ class Item(models.Model):
     categories = models.ManyToManyField(Category, related_name='items_in_category')
 
     # Member Variables
-    item_id = models.IntegerField(default=None)
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=1000)
     current_price = models.DecimalField(max_digits=8, decimal_places=2)
