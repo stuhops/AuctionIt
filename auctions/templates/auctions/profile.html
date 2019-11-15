@@ -17,12 +17,11 @@
         <div class="side-bar">
           <h2>{{ request.user.profile.name }}</h2>
           <img class="rounded img-fluid" src="{{ request.user.profile.getImageThumbnail }}">
-          <ul class="nav nav-pills flex-column">
+          <ul class="nav nav-pills flex-column my-3">
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
             </li>
           </ul>
-          <p>Some text about me</p>
           <h3>Recent Bids</h3>
           <ul class="nav nav-pills flex-column">
             {% for bid in recentBidList %}
