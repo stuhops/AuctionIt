@@ -1,4 +1,15 @@
 
-col-sm-4, .side-bar {
+.side-bar {
     max-width: 240px;
+}
+
+@media screen and (max-width: 576px) {
+    .side-bar {
+        max-width: 360px;
+        display: inline-block;
+    }
+
+    .center-xs-wrapper {
+        text-align: center;
+    }
 }
