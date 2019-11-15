@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-    {% load static %}
+    {% load static %} 
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light" style="padding-left: 0px">
             <a class="navbar-brand" href="{% url 'auctions:profile' %}"><img src="{% static 'auctions/images/logo/logo-med.png' %}" style="height: 50px;"></a>
@@ -15,14 +15,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <!-- Right aligned -->
                 <a class="nav nav-items nav-link" href="{% url 'auctions:profile' %}" >Profile</a>
                 <a class="nav nav-items nav-link" href="{% url 'auctions:explore' %}">Explore</a>
-                <!-- TODO: Add a search component -->
-                <a class="nav nav-items nav-link" href="#" >Search</a>
                 <a class="nav nav-items nav-link" href="{% url 'logout' %}" >Logout</a>
+
+                <!-- Left aligned -->
+                <!-- TODO: Add a search component -->
+                <form class="form-inline ml-auto" method="post">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success active" type="submit">Search</button>
+                  </form>
             </div>
         </nav>
     </div>
+    <hr style="margin: -4px;" />
 
     {% block body %}
     {% endblock %}
