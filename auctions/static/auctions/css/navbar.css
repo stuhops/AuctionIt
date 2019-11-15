@@ -45,8 +45,32 @@
     overflow: hidden;
     margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
-/* End sideways scroll throughs */
 
 .scroll-through-text-align {
-    margin-left: 22px !important;
+    margin-left: 22px;
 }
+/* End sideways scroll throughs */
+
+/* Colors */
+.bg-primary {
+    background-color: #262262;
+}
+
+.bg-info {
+    background-color: #F15A29;
+}
+
+.active {
+    background-color: #262262;
+}
+
+.text-primary {
+    color: #262262;
+}
+
+.text-info {
+    color: #F15A29;
+}
+
+/* End colors */
+
