@@ -3,24 +3,26 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/navbar.css' %}" media="screen">
 {% endblock %}
 
 {% block content %}
     {% load static %}
-    <nav class="navbar navbar-expand-md navbar-light">
-        <a class="navbar-brand" href="{% url 'auctions:profile' %}"><img src="{% static 'auctions/images/logo/logo-med.png' %}" style="height: 50px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <a type="button" class="nav nav-pills nav-items nav-link active" onclick="document.getElementById('explore').style.display='block'" >
-                Explore</a>
-            <input class="ml-auto mr-1" type="text" placeholder="Search..">
-            <button type="submit"><i class="fa fa-search"></i></button>
-            <a type="button" class="nav nav-pills nav-items nav-link active" href="{% url 'logout' %}" >Logout</a>
-        </div>
-    </nav>
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="{% url 'auctions:profile' %}"><img src="{% static 'auctions/images/logo/logo-med.png' %}" style="height: 50px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <a type="button" class="nav nav-pills nav-items nav-link active" onclick="document.getElementById('explore').style.display='block'" >
+                    Explore</a>
+                <input class="ml-auto mr-1" type="text" placeholder="Search..">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                <a type="button" class="nav nav-pills nav-items nav-link active" href="{% url 'logout' %}" >Logout</a>
+            </div>
+        </nav>
+    </div>
 
     {% block body %}
     {% endblock %}

@@ -4,7 +4,7 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/navbar.css' %}" media="screen">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 {% endblock%}
@@ -15,19 +15,14 @@
     <div class="row">
       <div class="col-sm-4">
         <h2>{{ request.user.profile.name }}</h2>
-        <h5>Photo of me:</h5>
-        <div class="profilePicture">
-          <!-- TODO: Change this so that it will display the default image if there is no uploaded image -->
-          <img class="rounded" src="{{ request.user.profile.getImageThumbnail }}">
-        </div>
-        <ul class="nav nav-pills flex-column">
+        <img class="rounded img-fluid profilePicture" src="{{ request.user.profile.getImageThumbnail }}">
+        <ul class="nav nav-pills flex-column" style="width: 240px;">
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
           </li>
         </ul>
         <p>Some text about me</p>
         <h3>Recent Bids</h3>
-        <p>These are some of your recent bids</p>
         <ul class="nav nav-pills flex-column">
           {% for bid in recentBidList %}
             <li class="nav-item">

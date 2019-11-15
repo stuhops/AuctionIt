@@ -176,6 +176,7 @@ input[type=submit]:hover {
     background-size: cover;
 }
 
+/* TODO: This could be added back in */
 .timeLeft {
     color: darkorange;
 }
