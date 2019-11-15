@@ -1,161 +1,22 @@
-.logoWelcome {
-    max-width: 85%;
-
+/* Screen alignment with sidebar */
+.side-bar {
+    max-width: 300px;
 }
 
-.topnav a {
-    float: left;
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Style the search box inside the navigation bar */
-.topnav input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-}
-
-@media screen and (min-width: 720px) {
-    .navbar {
-        padding-left: 50px;
-        padding-right: 50px;
+@media screen and (max-width: 576px) {
+    .side-bar {
+        display: inline-block;
     }
-}
 
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f2f2f2;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* style inputs and link buttons */
-input,
-.btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    margin: 5px 0;
-    display: inline-block;
-    font-size: 17px;
-    line-height: 20px;
-    text-decoration: none; /* remove underline from anchors */
-}
-
-input:hover,
-.btn:hover {
-    opacity: 1;
-}
-
-/* add appropriate colors to fb, twitter and google buttons */
-.fb {
-    background-color: #3B5998;
-    color: white;
-}
-
-.twitter {
-    background-color: #55ACEE;
-    color: white;
-}
-
-.google {
-    background-color: #dd4b39;
-    color: white;
-}
-
-/* style the submit button */
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-/* Two-column layout */
-.col {
-    float: left;
-    width: 50%;
-    margin: auto;
-    padding: 0 50px;
-    margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* vertical line */
-.vl {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    border: 2px solid #ddd;
-    height: 175px;
-}
-
-/* text inside the vertical line */
-.vl-innertext {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    padding: 8px 10px;
-}
-
-/* hide some text on medium and large screens */
-.hide-md-lg {
-    display: none;
-}
-
-/* bottom container */
-.bottom-container {
-    text-align: center;
-    background-color: #666;
-    border-radius: 0px 0px 4px 4px;
-}
-
-/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 650px) {
-    .col {
-        width: 100%;
-        margin-top: 0;
-    }
-    /* hide the vertical line */
-    .vl {
-        display: none;
-    }
-    /* show the hidden text on small screens */
-    .hide-md-lg {
-        display: block;
+    .center-xs-wrapper {
         text-align: center;
     }
 }
+/* End screen alignment with sidebar */
 
+/* Sideways scroll throughs */
 .cover-container {
-    height: 180px;
+    height: 230px;
     width: 100%;
     white-space: nowrap;
     overflow-x: scroll;
@@ -166,157 +27,63 @@ input[type=submit]:hover {
     position: relative;
     display: inline-block;
     margin: 8px 8px;
+    padding: 13px;
     box-shadow: 2px 2px 4px #bbb;
     border-top-right-radius: 4px;
-    width: 116px;
-    height: 158px;
+    width: 150px;
+    height: 200px;
     vertical-align: bottom;
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* TODO: This could be added back in */
-.timeLeft {
-    color: darkorange;
-}
-.bidNowText {
-    color: darkblue;
-}
-
-/*new stuff*/
-* {box-sizing: border-box}
-/* Full-width input fields */
-.input-sup[type=text], .input-sup[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-/* Add a background color when the inputs get focus */
-.input-sup[type=text]:focus, .input-sup[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-/* Set a style for all buttons */
-.button-sup {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.button-sup:hover {
-    opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn-sup {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn-sup, .signupbtn-sup {
-    float: left;
-    width: 50%;
-}
-
-/* Add padding to container elements */
-.container-sup {
-    padding: 16px;
-}
-
-/* The Modal (background) */
-.modal-sup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    padding-top: 50px;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content-sup {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Style the horizontal ruler */
-.hr-sup {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-/* The Close Button (x) */
-.close-sup {
-    position: absolute;
-    right: 35px;
-    top: 15px;
-    font-size: 40px;
-    font-weight: bold;
-    color: #f1f1f1;
-}
-
-.close-sup:hover,
-.close-sup:focus {
-    color: #f44336;
-    cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix-sup::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn-sup, .signupbtn-sup {
-        width: 100%;
-    }
-}
-
-/* Add Zoom Animation */
-.animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
-}
-
 .fit-center {
     display: block;
-    width: 75%;
+    width: 100%;
     height: auto;
     overflow: hidden;
-    margin: 10% auto auto auto; /* 5% from the top, auto from the bottom and centered */
 }
+
+.scroll-through-text-align {
+    margin-left: -22px;
+}
+/* End sideways scroll throughs */
+
+/* Colors */
+.bg-primary {
+    background-color: #262262 !important;
+}
+
+.bg-info {
+    background-color: #F15A29 !important;
+}
+
+.bg-compliment {
+    background-color: #567491 !important;
+}
+
+.active {
+    background-color: #262262 !important;
+    color: white !important;
+}
+
+.text-primary {
+    color: #262262 !important;
+}
+
+.text-info {
+    color: #F15A29 !important;
+}
+
+.text-compliment {
+    color: #567491 !important;
+}
+
+a {
+    color: #F15A29 !important;
+}
+/* End colors */
 
 .img-preview {
     width: 50px;
