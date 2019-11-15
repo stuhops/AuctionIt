@@ -24,11 +24,15 @@
         </div>
         <div class="col-sm-8">
             {% for auction in user_auctions %}
-                <div class="explore-auction-container" id="auction_{{ auction.auction_id }}" style="visibility: hidden;">
+                <div class="cover-container explore-auction-container" id="auction_{{ auction.auction_id }}" style="visibility: hidden;">
                 {% for category in auction.categories.all %}
                     <div class="category-heading">{{ category.name }}</div>
                     {% for item in category.items_in_category.all %}
-                        <img style="width: 100px; display: inline;" src="{{ item.getPrimaryImage }}">
+                        <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+                            <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
+                            <h6>{{ item.name }}</h6>
+                            <p>{{ item.current_price }}</p>
+                        </a>
                         <h6>{{ item.name }}</h6>
                         <p>{{ item.current_price }}</p>
                     {% endfor %}
