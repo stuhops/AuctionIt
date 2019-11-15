@@ -2,8 +2,6 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
 {% endblock %}
 
 {% block content %}
@@ -22,10 +20,10 @@
 
                 <!-- Left aligned -->
                 <!-- TODO: Add a search component -->
-                <form class="form-inline ml-auto" method="post">
+                <form class="form-inline ml-auto" method="post" action="{% url 'auctions:explore' %}">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-success active" type="submit">Search</button>
+                    <button class="btn active" type="submit">Search</button>
                   </form>
             </div>
         </nav>
