@@ -33,11 +33,11 @@
           <hr class="d-sm-none">
         </div>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-8 pl-4">
         {% if items_won_list %}
-          <h2 class="scroll-through-text-align">Items Won</h2>
-          <h5 class="scroll-through-text-align">The green borders are ones you need to pick up</h5>
-          <div class="row-fluid">
+          <h2>Items Won</h2>
+          <h5>The green borders are ones you need to pick up</h5>
+          <div class="row-fluid scroll-through-text-align">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">
                 {% for item in items_won_list %}
@@ -65,9 +65,9 @@
         <br>
 
         {% if bid_on_list %}
-          <h2 class="scroll-through-text-align">Items you have bid on</h2>
-          <h5 class="scroll-through-text-align">The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
-          <div class="row-fluid">
+          <h2>Items you have bid on</h2>
+          <h5>The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
+          <div class="row-fluid scroll-through-text-align">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">
                 {% for item in bid_on_list %}
