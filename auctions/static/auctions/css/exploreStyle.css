@@ -1,4 +1,4 @@
-.auction-heading {
+.auction-selection-heading {
     text-align: left;
     font-size: 200%;
     color: black;
@@ -6,10 +6,19 @@
 }
 
 .category-heading {
-    text-align: center;
-    font-size: 150%;
+    text-align: left;
+    font-size: 100%;
     color: white;
     background-color: blue;
+    padding: 10px;
+}
+
+.auction-heading {
+  background-color: red;
+  color: white;
+  font-size: 150%;
+  text-align: center;
+  padding: 10px;
 }
 
 
