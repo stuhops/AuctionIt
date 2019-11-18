@@ -27,11 +27,15 @@
   }
 
 
-  .active, .auction-listing:hover {
+  .auction-listing:hover {
     background-color: #ccc;
   }
   
 
   .category-listing {
+      background-color: red;
+  }
+
+  .active-auction-listing {
       background-color: red;
   }
