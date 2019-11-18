@@ -19,14 +19,15 @@
             </div>
             <br>
             {% for auction in user_auctions %}
-                <button class="auction-listing" id="auction_heading_{{ auction.auction_id }}" onclick="handleAuctionClick('{{ auction.auction_id }}')">{{ auction.auction_id }}</button>
+                <button value="0" class="auction-listing" id="auction_heading_{{ auction.auction_id }}" onclick="handleAuctionClick('{{ auction.auction_id }}')">{{ auction.auction_id }}</button>
             {% endfor %}
         </div>
         <div class="col-sm-8">
             {% for auction in user_auctions %}
-                <div class="cover-container explore-auction-container" id="auction_{{ auction.auction_id }}" style="visibility: hidden;">
+                <div class="explore-auction-container" id="auction_{{ auction.auction_id }}" style="display: none;">
                 {% for category in auction.categories.all %}
                     <div class="category-heading">{{ category.name }}</div>
+                    <div class="cover-container">
                     {% for item in category.items_in_category.all %}
                         <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
                             <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
@@ -36,6 +37,7 @@
                         <h6>{{ item.name }}</h6>
                         <p>{{ item.current_price }}</p>
                     {% endfor %}
+                    </div>
                 {% endfor %}
                 </div>
             {% endfor %}

@@ -21,9 +21,19 @@ function handleAuctionClick(inputAuctionID) {
     var headingID = "auction_heading_" + inputAuctionID;
     console.log("Looking for ID: " + headingID);
     var auctionHeading = document.getElementById(headingID);
-    auctionHeading.setAttribute("style", "background-color: red;");
 
     var auctionListingID = "auction_" + inputAuctionID;
     var auctionListing = document.getElementById(auctionListingID);
-    auctionListing.setAttribute("style", "visiblility: visible;")
+
+    if (auctionHeading.value == "0") {
+        auctionHeading.setAttribute("class", "active-auction-listing auction-listing");
+        auctionListing.setAttribute("style", "display: block;")
+        auctionHeading.value = 1;
+    }
+    else {
+        auctionHeading.setAttribute("class", "auction-listing");
+        auctionListing.setAttribute("style", "display: none;")
+        auctionHeading.value = 0;
+    }
+
 }
