@@ -10,6 +10,10 @@ from django.conf import settings
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
+    active = models.BooleanField(default=True)
+
+    def setActive(self, a):
+        self.active = a
 
     def __str__(self):
         return self.auction_id
@@ -62,6 +66,12 @@ class Item(models.Model):
             self.sold = False
 
         return self.sold
+
+    def isActive(self):
+        if self.auction.active:
+            return True
+        else:
+            return False
 
     def getPrimaryImage(self):
         image_list = self.itemimage_set.order_by('pk')
