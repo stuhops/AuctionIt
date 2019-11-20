@@ -68,8 +68,11 @@ def explore(request):
 @login_required
 def item(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
-    if not item.isActive:
-        redirect(request.META.get('HTTP_REFERER'))
+    if not item.isActive or item.auction in request.user.profile.auctions.all():
+        try: 
+            redirect(request.META.get('HTTP_REFERER'))
+        except (KeyError):
+            redirect(explore)
 
     EXTRA = 40
     TOTAL = 20
