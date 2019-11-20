@@ -72,7 +72,8 @@ def explore(request):
 @login_required
 def item(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
-    item.isSold()
+    if not item.isActive:
+        redirect(request.META.get('HTTP_REFERER'))
 
     EXTRA = 40
     TOTAL = 20
@@ -89,7 +90,7 @@ def item(request, item_pk):
 
     try:
         selected_bid = request.POST['bid']
-        if item.sold:
+        if item.isSold():
             raise KeyError("Item is sold")
     except (KeyError):
         bid_list = item.bid_set.order_by('-price')[:3]
