@@ -23,13 +23,14 @@ def profile(request):
     user_items = request.user.profile.bid_on.order_by('end_date')
 
     for item in user_items:
-        bid_on_list.append(item)
+        if item.isActive and not item.hidden:
+            bid_on_list.append(item)
 
-        if item.isSold():
-            if item.whoWon() == request.user:
-                items_won_list.append(item)
-            else:
-                pass
+            if item.isSold():
+                if item.whoWon() == request.user:
+                    items_won_list.append(item)
+                else:
+                    pass
 
     # JAREN - CURRENTLY WORKING ON THIS
     # # # # #
@@ -50,23 +51,18 @@ def profile(request):
 
 @login_required
 def explore(request):
-    try:
-        if not request.user.profile.name or not request.user.profile.email:
-            return redirect('auctions:editProfile')
+    if not request.user.profile.name or not request.user.profile.email:
+        return redirect('auctions:editProfile')
 
-        all_auctions_list = Auction.objects.filter().order_by('auction_id')
+    all_auctions_list = Auction.objects.filter().order_by('auction_id')
 
-        user_auctions = request.user.profile.auctions.all()
+    user_auctions = request.user.profile.auctions.all()
 
-        context = {
-            'all_auctions_list': all_auctions_list,
-            'user_auctions': user_auctions,
-        }
-        return render(request, 'auctions/explore.html', context)
-
-    except AttributeError:
-        print("The user is not logged in")
-        return redirect('login')
+    context = {
+        'all_auctions_list': all_auctions_list,
+        'user_auctions': user_auctions,
+    }
+    return render(request, 'auctions/explore.html', context)
 
 
 @login_required
