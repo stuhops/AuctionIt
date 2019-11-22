@@ -27,6 +27,18 @@ def markAllAsSold(modeladmin, request, queryset):
       item.save()
 markAllAsSold.short_description = 'CAUTION Mark all items as sold in auction'
 
+def markAllAsOpen(modeladmin, request, queryset):
+  for auction in queryset:
+    for item in auction.items.all():
+      item.sold = False
+
+      item.start_date = timezone.now()
+      if (item.end_date - item.start_date).total_seconds() < 0:
+        item.end_date = item.start_date
+
+      item.save()
+markAllAsOpen.short_description = 'CAUTION Mark all items as open in auction'
+
 
 class AuctionAdmin(admin.ModelAdmin):
   list_display = ['auction_id', 'active']
@@ -35,6 +47,7 @@ class AuctionAdmin(admin.ModelAdmin):
     setActive,
     setInactive,
     markAllAsSold,
+    markAllAsOpen,
   ]
 
 
