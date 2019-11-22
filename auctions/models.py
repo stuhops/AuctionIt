@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -52,7 +52,7 @@ class Item(models.Model):
     # winner = models.ForeignKey(Profile)
 
     def getTimeDiff(self):
-        dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
+        dif = self.end_date - timezone.now()
         if self.isSold():
             return "None"
         else:
@@ -61,12 +61,9 @@ class Item(models.Model):
                     (dif.seconds//60)//60)
 
     def isSold(self):
-        if (self.end_date.replace(tzinfo=None) -
-                datetime.datetime.now()).total_seconds() < 0:
+        if (self.end_date - timezone.now()).total_seconds() < 0:
             self.sold = True
             self.whoWon()
-        else:
-            self.sold = False
 
         return self.sold
 

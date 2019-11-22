@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils import timezone
 
 from .models import *
 
@@ -14,12 +15,17 @@ def setInactive(modeladmin, request, queryset):
         auction.save()
 setInactive.short_description = 'Deactivate the selected Auctions'
 
-def markAsSold(modeladmin, request, queryset):
-    for auction in queryset:
-      for item in auction.items:
-        item.markAsSold()
-        item.save()
-markAsSold.short_description = 'PLEASE USE CAUTION Mark all items as sold in auction'
+def markAllAsSold(modeladmin, request, queryset):
+  for auction in queryset:
+    for item in auction.items.all():
+      item.sold = True
+
+      item.end_date = timezone.now()
+      if (item.end_date - item.start_date).total_seconds() < 0:
+        item.start_date = item.end_date
+
+      item.save()
+markAllAsSold.short_description = 'CAUTION Mark all items as sold in auction'
 
 
 class AuctionAdmin(admin.ModelAdmin):
@@ -28,7 +34,7 @@ class AuctionAdmin(admin.ModelAdmin):
   actions = [
     setActive,
     setInactive,
-    markAsSold,
+    markAllAsSold,
   ]
 
 
