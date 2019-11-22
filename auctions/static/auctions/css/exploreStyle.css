@@ -41,10 +41,22 @@
   }
   
 
-  .category-listing {
+  /* .category-listing {
       background-color: red;
-  }
+  } */
 
   .active-auction-listing {
       background-color: red;
+  }
+
+  .explore-auction-container {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.2s ease-in;
+  }
+  .explore-auction-container-active {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.2s ease-in;
   }
