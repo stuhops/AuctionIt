@@ -12,8 +12,11 @@ class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
     active = models.BooleanField(default=True)
 
-    def setActive(self, a):
-        self.active = a
+    AUCTION_CHOICES = [
+        ('activate', 'Activate'),
+        ('deactivate', 'Deactivate'),
+        ('all sold', 'Mark Auction as Sold'),
+    ]
 
     def __str__(self):
         return self.auction_id
