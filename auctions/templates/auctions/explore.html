@@ -22,7 +22,7 @@
                 <button value="0" class="auction-listing" id="auction_heading_{{ auction.auction_id }}" onclick="handleAuctionClick('{{ auction.auction_id }}')">{{ auction.auction_id }}</button>
             {% endfor %}
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-8">
             {% for auction in user_auctions %}
                 <div class="explore-auction-container" id="auction_{{ auction.auction_id }}">
                 <div class="auction-heading">{{ auction.auction_id }}</div>
