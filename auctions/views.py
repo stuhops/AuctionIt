@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import EditProfile
+from .forms import EditProfile  # , JoinAuction
 import datetime
 import socket
 from django.conf import settings
@@ -143,7 +143,7 @@ def editProfile(request):
 
 @login_required
 def codes(request):
-    # get current ip adress
+    # get current ip address
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     ipAdress = s.getsockname()[0]
@@ -160,3 +160,27 @@ def codes(request):
         "port": port,
         "items": items,
     })
+
+
+@login_required
+def join_auction(request):
+    if request.method == 'POST':  # If the form has been submitted...
+        form = JoinAuction(request.POST)  # A form bound to the POST data
+        if form.is_valid():
+            form.save()
+            print("saved")
+            return redirect('auctions:explore')
+        # if form.is_valid() and Auction.objects.get(slug=form.slug):
+        #     request.user.profile.auctions.append(
+        #         Auction.objects.get(slug=form.slug)
+        #     )
+        #     messages.success(
+        #         request, 'You have successfully been added to '
+        #         + Auction.objects.get(slug=form.slug).auction_id
+        #     )
+        #     return redirect('auctions:explore')
+
+    else:
+        form = JoinAuction()
+
+    return render(request, 'auctions/joinAuction.html', {"form": form})
