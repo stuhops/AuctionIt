@@ -36,3 +36,7 @@
 ###Images
 #####Uploading Images
 - https://www.codingforentrepreneurs.com/projects/try-django-2-2/image-field-and-uploading-images
+
+
+### Managing auctions
+- https://books.agiliq.com/projects/django-admin-cookbook/en/latest/action_buttons.html
