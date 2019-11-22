@@ -30,7 +30,20 @@
                     <div class="category-heading">{{ category.name }}</div>
                     <div class="cover-container">
                     {% for item in category.items_in_category.all %}
-                        <a id="won{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+                        <a id="item{{ forloop.counter }}" href="{% url 'auctions:item' item.pk %}" class="cover-item bg-light border">
+
+                            <script>
+                                if('{{ item.whoWon }}' == '{{ request.user }}') {
+                                    document.getElementById('item{{ forloop.counter }}').classList.add('border-success');
+                                }
+                                else if('{{ item.isSold }}' == 'True') {
+                                    document.getElementById('item{{ forloop.counter }}').classList.add('border-danger');
+                                }
+                                else {
+                                    document.getElementById('item{ forloop.counter }}').classList.add('border-warning');
+                                }
+                            </script>
+
                             <img class="fit-center rounded" src="{{ item.getPrimaryImage }}">
                             <h6>{{ item.name }}</h6>
                             <p>{{ item.current_price }}</p>
