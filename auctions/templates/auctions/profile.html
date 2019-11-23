@@ -2,46 +2,35 @@
 
 {% block title %}User Profile{% endblock%}
 
-{% block head %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'auctions/css/style.css' %}" media="screen">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-{% endblock%}
-
 {% block body %}
   {% load static %}
-  <div class="container" style="margin-top:30px">
-    <div class="row">
+  <div class="container mt-4"> 
+    <div class="row center-xs-wrapper">
       <div class="col-sm-4">
-        <h2>{{ request.user.profile.name }}</h2>
-        <h5>Photo of me:</h5>
-        <div class="profilePicture">
-          <!-- TODO: Change this so that it will display the default image if there is no uploaded image -->
-          <img class="rounded" src="{{ request.user.profile.getImageThumbnail }}">
-        </div>
-        <ul class="nav nav-pills flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
-          </li>
-        </ul>
-        <p>Some text about me</p>
-        <h3>Recent Bids</h3>
-        <p>These are some of your recent bids</p>
-        <ul class="nav nav-pills flex-column">
-          {% for bid in recentBidList %}
+        <div class="side-bar">
+          <h2>{{ request.user.profile.name }}</h2>
+          <img class="rounded img-fluid" src="{{ request.user.profile.getImageThumbnail }}">
+          <ul class="nav nav-pills flex-column my-3">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'auctions:item' bid.item.pk %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+              <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
             </li>
-          {% endfor %}
-        </ul>
-        <hr class="d-sm-none">
+          </ul>
+          <h3>Recent Bids</h3>
+          <ul class="nav nav-pills flex-column">
+            {% for bid in recentBidList %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'auctions:item' bid.item.pk %}">{{ bid.item.name }} -- ${{ bid.price }} </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <hr class="d-sm-none">
+        </div>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-8 pl-4">
         {% if items_won_list %}
           <h2>Items Won</h2>
           <h5>The green borders are ones you need to pick up</h5>
-          <div class="row-fluid">
+          <div class="row-fluid scroll-through-text-align">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">
                 {% for item in items_won_list %}
@@ -71,7 +60,7 @@
         {% if bid_on_list %}
           <h2>Items you have bid on</h2>
           <h5>The green borders are ones you are currently winning, yellow you are losing, and red you have lost and the auction is over</h5>
-          <div class="row-fluid">
+          <div class="row-fluid scroll-through-text-align">
             <div class="col-lg-12 col-md-10 ">
               <div class="cover-container">
                 {% for item in bid_on_list %}

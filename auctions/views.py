@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import EditProfile
+from .forms import EditProfile  # , JoinAuction
 import datetime
 import socket
 from django.conf import settings
@@ -23,13 +23,14 @@ def profile(request):
     user_items = request.user.profile.bid_on.order_by('end_date')
 
     for item in user_items:
-        bid_on_list.append(item)
+        if item.isActive and not item.hidden:
+            bid_on_list.append(item)
 
-        if item.isSold():
-            if item.whoWon() == request.user:
-                items_won_list.append(item)
-            else:
-                pass
+            if item.isSold():
+                if item.whoWon() == request.user:
+                    items_won_list.append(item)
+                else:
+                    pass
 
     # JAREN - CURRENTLY WORKING ON THIS
     # # # # #
@@ -50,29 +51,28 @@ def profile(request):
 
 @login_required
 def explore(request):
-    try:
-        if not request.user.profile.name or not request.user.profile.email:
-            return redirect('auctions:editProfile')
+    if not request.user.profile.name or not request.user.profile.email:
+        return redirect('auctions:editProfile')
 
-        all_auctions_list = Auction.objects.filter().order_by('auction_id')
+    all_auctions_list = Auction.objects.filter().order_by('auction_id')
 
-        user_auctions = request.user.profile.auctions.all()
+    user_auctions = request.user.profile.auctions.all()
 
-        context = {
-            'all_auctions_list': all_auctions_list,
-            'user_auctions': user_auctions,
-        }
-        return render(request, 'auctions/explore.html', context)
-
-    except AttributeError:
-        print("The user is not logged in")
-        return redirect('login')
+    context = {
+        'all_auctions_list': all_auctions_list,
+        'user_auctions': user_auctions,
+    }
+    return render(request, 'auctions/explore.html', context)
 
 
 @login_required
 def item(request, item_pk):
     item = get_object_or_404(Item, pk=item_pk)
-    item.isSold()
+    if not item.isActive or item.auction in request.user.profile.auctions.all():
+        try: 
+            redirect(request.META.get('HTTP_REFERER'))
+        except (KeyError):
+            redirect(explore)
 
     EXTRA = 40
     TOTAL = 20
@@ -89,7 +89,7 @@ def item(request, item_pk):
 
     try:
         selected_bid = request.POST['bid']
-        if item.sold:
+        if item.isSold():
             raise KeyError("Item is sold")
     except (KeyError):
         bid_list = item.bid_set.order_by('-price')[:3]
@@ -143,7 +143,7 @@ def editProfile(request):
 
 @login_required
 def codes(request):
-    # get current ip adress
+    # get current ip address
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     ipAdress = s.getsockname()[0]
@@ -160,3 +160,27 @@ def codes(request):
         "port": port,
         "items": items,
     })
+
+
+@login_required
+def join_auction(request):
+    if request.method == 'POST':  # If the form has been submitted...
+        form = JoinAuction(request.POST)  # A form bound to the POST data
+        if form.is_valid():
+            form.save()
+            print("saved")
+            return redirect('auctions:explore')
+        # if form.is_valid() and Auction.objects.get(slug=form.slug):
+        #     request.user.profile.auctions.append(
+        #         Auction.objects.get(slug=form.slug)
+        #     )
+        #     messages.success(
+        #         request, 'You have successfully been added to '
+        #         + Auction.objects.get(slug=form.slug).auction_id
+        #     )
+        #     return redirect('auctions:explore')
+
+    else:
+        form = JoinAuction()
+
+    return render(request, 'auctions/joinAuction.html', {"form": form})

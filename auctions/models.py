@@ -1,15 +1,45 @@
 from django.db import models
-import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from stdimage import JPEGField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
+from django.utils.text import slugify
+import itertools
 
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
+    # slug = models.SlugField(
+    #     editable=False,
+    #     unique=True,
+    #     verbose_name="Auction code"
+    # )
+    active = models.BooleanField(default=True)
+
+    AUCTION_CHOICES = [
+        ('activate', 'Activate'),
+        ('deactivate', 'Deactivate'),
+        ('all sold', 'Mark Auction as Sold'),
+    ]
+
+    # def _generate_slug(self):
+    #     value = self.auction_id
+    #     slug_candidate = slug_original = slugify(value, allow_unicode=True)
+    #     for i in itertools.count(1):
+    #         if not Auction.objects.filter(slug=slug_candidate).exists():
+    #             break
+    #         slug_candidate = '{}-{}'.format(slug_original, i)
+
+    #     self.slug = slug_candidate
+
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:
+    #         self._generate_slug()
+
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.auction_id
@@ -45,7 +75,7 @@ class Item(models.Model):
     # winner = models.ForeignKey(Profile)
 
     def getTimeDiff(self):
-        dif = self.end_date.replace(tzinfo=None) - datetime.datetime.now()
+        dif = self.end_date - timezone.now()
         if self.isSold():
             return "None"
         else:
@@ -54,14 +84,17 @@ class Item(models.Model):
                     (dif.seconds//60)//60)
 
     def isSold(self):
-        if (self.end_date.replace(tzinfo=None) -
-                datetime.datetime.now()).total_seconds() < 0:
+        if (self.end_date - timezone.now()).total_seconds() < 0:
             self.sold = True
             self.whoWon()
-        else:
-            self.sold = False
 
         return self.sold
+
+    def isActive(self):
+        if self.auction.active:
+            return True
+        else:
+            return False
 
     def getPrimaryImage(self):
         image_list = self.itemimage_set.order_by('pk')
@@ -94,7 +127,7 @@ class Profile(models.Model):
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
     image = JPEGField(blank=True, upload_to='images/',
-                      variations={'thumbnail': {"width": 240, "height": 240,
+                      variations={'thumbnail': {"width": 300, "height": 300,
                                   "crop": True}},
                       delete_orphans=True)
 
@@ -145,7 +178,7 @@ class ItemImage(models.Model):
     # Dependencies
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     image = JPEGField(upload_to='images/', variations={
-        'thumbnail': {"width": 240, "height": 240, "crop": True}},
+        'thumbnail': {"width": 300, "height": 300, "crop": True}},
         delete_orphans=True)
 
     def getImageThumbnail(self):
