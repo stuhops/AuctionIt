@@ -12,6 +12,7 @@ urlpatterns = [
     path('item/<int:item_pk>/', views.item, name='item'),
     path('codes', views.codes, name='codes'), 
     path('explore', views.explore, name='explore'),
+    # path('join_auction/', views.join_auction, name='join_auction'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

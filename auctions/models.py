@@ -6,10 +6,17 @@ from django.dispatch import receiver
 from stdimage import JPEGField
 from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
+from django.utils.text import slugify
+import itertools
 
 
 class Auction(models.Model):
     auction_id = models.CharField(max_length=32)
+    # slug = models.SlugField(
+    #     editable=False,
+    #     unique=True,
+    #     verbose_name="Auction code"
+    # )
     active = models.BooleanField(default=True)
 
     AUCTION_CHOICES = [
@@ -17,6 +24,22 @@ class Auction(models.Model):
         ('deactivate', 'Deactivate'),
         ('all sold', 'Mark Auction as Sold'),
     ]
+
+    # def _generate_slug(self):
+    #     value = self.auction_id
+    #     slug_candidate = slug_original = slugify(value, allow_unicode=True)
+    #     for i in itertools.count(1):
+    #         if not Auction.objects.filter(slug=slug_candidate).exists():
+    #             break
+    #         slug_candidate = '{}-{}'.format(slug_original, i)
+
+    #     self.slug = slug_candidate
+
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:
+    #         self._generate_slug()
+
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         return self.auction_id

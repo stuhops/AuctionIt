@@ -1,0 +1,15 @@
+{% extends 'forms.html' %}
+
+{% block title %}Join an Auction{% endblock %}
+
+{% block errorMessage %}
+  {% if form.errors %}
+    <div class="alert alert-warning">
+      <strong>Error upon submission</strong><br> Please verify your auction code
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block header %}Join Auction{% endblock %}
+
+{% block submitBtnText %}Join{% endblock %}
