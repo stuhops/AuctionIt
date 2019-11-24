@@ -4,3 +4,4 @@ __pycache__
 UploadedImages
 .vscode
 sent_emails/*
+.coverage
