@@ -34,7 +34,12 @@ Our project is built on Django. To run it, do the following:
 
 
 __Project Completion__
+
 We estimate 85-90% of our project to be completed. At this point, we only have UI changes to make. Project functionality is basically finished.
+
+__Documents__
+
+The Milestone 3 Deliverables list specifies Systems Design and System Analysis documents. We were unsure if these were necessary, but we created them anyway. They exist under the docs/ directory. Additionally, we updated and finalized documents as needed for this milestone submission.
 
 
 ----------
