@@ -37,7 +37,7 @@ __Project Completion__
 We estimate 85-90% of our project to be completed. At this point, we only have UI changes to make. Project functionality is basically finished.
 
 
-
+----------
 
 
 An explanation of the organization and name scheme for the workspace:
