@@ -1,3 +1,42 @@
+**Information for Milestone 3:**
+
+__Unit Testing:__
+
+According to our unit testing coverage report, our unit tests cover 72% of all of our code. Running the unit tests is outlined in the "instructions" section.
+
+
+__Documents:__
+
+Sprint planning documents are located in docs/planning.
+Standup documents are located in docs/StandupMeetings. 
+Retrospective documents are located in docs/retrospectives.
+
+__Instructions for Running our Project:__
+
+Our project is built on Django. To run it, do the following:
+* Clone this repository
+* Navigate to the cloned repository's source directory.
+* Run 'python manage.py makemigrations'
+* Run 'python manage.py migrate'
+* Run 'python manage.py runserver'
+* If you are given Django package errors, install the specified packages to continue.
+* Navigate to the URL specified in the console (Usually 127.0.0.1).
+* Feel free to make a superuser for access to the /admin/ URL workspace: 'python manage.py createsuperuser'
+    * You can create, modify, delete, view auction-related information at the admin control panel.
+* Let us know if you run into any issues.
+
+* Unit Testing:
+    * Run 'python manage.py test'
+    * If you want to see coverage report (not necessary to run the tests):
+        * 'pip install coverage'
+        * 'coverage run --source='.' manage.py test'
+        * 'coverage report'
+
+
+__Project Completion__
+We estimate 85-90% of our project to be completed. At this point, we only have UI changes to make. Project functionality is basically finished.
+
+
 An explanation of the organization and name scheme for the workspace:
 
     This project is going to be a silent auction. With this, up to 300 users should be able to bid on an item at a time. 
