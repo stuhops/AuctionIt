@@ -1,4 +1,4 @@
-**Information for Milestone 3:**
+**INFORMATION FOR MILESTONE 3:**
 
 __Unit Testing:__
 
@@ -35,6 +35,9 @@ Our project is built on Django. To run it, do the following:
 
 __Project Completion__
 We estimate 85-90% of our project to be completed. At this point, we only have UI changes to make. Project functionality is basically finished.
+
+
+
 
 
 An explanation of the organization and name scheme for the workspace:
