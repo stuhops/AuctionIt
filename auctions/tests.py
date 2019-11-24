@@ -80,22 +80,25 @@ class ProfileTestCase(TestCase):
         Item.objects.get(name="test_item2").sold=False
         Item.objects.get(name="test_item2").picked_up=False
         test_user = User(username="test_user",first_name="Test",last_name="User", email="test@testemail.com", password="password")
+        v = Profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
         test_user.save()
-        test_user.profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
+        Profile.create_user_profile(test_user,"","no")
+        Profile.save_user_profile(test_user,"")
+        #test_user.profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
         #Profile.objects.get(name="Test User").auctions.set(test_auction)
 
 
     def test_create_user_profile(self):
-        test_item = Auction.objects.get(auction_id="test_item1")
-        self.assertEqual(str(test_item), "test_item1")
+        test_profile = Profile.objects.get(email="test@testemail.com")
+        self.assertEqual(str(test_item), "Test User")
 
     def test_save_user_profile(self):
-        test_item = Auction.objects.get(auction_id="test_item1")
-        self.assertEqual(str(test_item), "test_item1")
+        test_profile = Profile.objects.get(email="test@testemail.com")
+        self.assertEqual(str(test_item), "Test User")
 
     def test_getImageThumbnail(self):
-        test_item = Auction.objects.get(auction_id="test_item1")
-        self.assertEqual(str(test_item), "test_item1")
+        test_profile = Profile.objects.get(email="test@testemail.com")
+        self.assertEqual(str(test_item), "Test User")
 
     def test_set_bid_on(self):
         test_profile = Profile.objects.get(email="test@testemail.com")
