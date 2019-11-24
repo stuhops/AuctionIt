@@ -79,9 +79,9 @@ class ProfileTestCase(TestCase):
         Item.objects.create(name="test_item2", current_price=420.69,start_date=datetime.now(),description="This is the current description for the test item class",end_date=(datetime.now() + timedelta(days=1)),auction=test_auction)
         Item.objects.get(name="test_item2").sold=False
         Item.objects.get(name="test_item2").picked_up=False
-        test_user = User.objects.create_user(username="test_user",first_name="Test",last_name="User", email="test@testemail.com", password="password")
+        test_user = User(username="test_user",first_name="Test",last_name="User", email="test@testemail.com", password="password")
         test_user.save()
-        Profile.objects.create(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
+        test_user.profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
         #Profile.objects.get(name="Test User").auctions.set(test_auction)
 
 
