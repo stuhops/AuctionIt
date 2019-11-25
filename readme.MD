@@ -16,6 +16,7 @@ __Instructions for Running our Project:__
 Our project is built on Django. To run it, do the following:
 * Clone this repository
 * Navigate to the cloned repository's source directory.
+* Ensure that Python version 3.6 is installed on your system.
 * Use pipenv: `$ pipenv shell`
 * Install dependancies `$ pipenv install --dev`
 * Run `python manage.py migrate`
@@ -29,7 +30,6 @@ Our project is built on Django. To run it, do the following:
 * Unit Testing:
     * Run 'python manage.py test'
     * If you want to see coverage report (not necessary to run the tests):
-        * `pip install coverage`
         * `coverage run --source="." manage.py test`
         * `coverage report`
 
