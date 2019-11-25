@@ -79,9 +79,8 @@ class Item(models.Model):
         if self.isSold():
             return "None"
         else:
-            return "%s days, %s hours, %s minutes, and %s seconds" % \
-                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
-                    (dif.seconds//60)//60)
+            return "%s days, %s hours, and %s minutes" % \
+                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
 
     def isSold(self):
         if (self.end_date - timezone.now()).total_seconds() < 0:
