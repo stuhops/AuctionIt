@@ -11,16 +11,25 @@
 
 {% block body %}
 
-<div class="container" style="margin-top:30px; margin-left: 10%; margin-right: 10%;">
-    <div class="row">
+<div class="container mt-4">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="row center-xs-wrapper">
         <div class="col-sm-4">
-            <div class="auction-selection-heading">
-                Select Auction to Display:
+            <div class="side-bar">
+                <div class="auction-selection-heading">
+                    Select Auction to Display:
+                </div>
+                <br>
+                {% for auction in user_auctions %}
+                    <button value="0" class="auction-listing" id="auction_heading_{{ auction.auction_id }}" onclick="handleAuctionClick('{{ auction.auction_id }}')">{{ auction.auction_id }}</button>
+                {% endfor %}
             </div>
-            <br>
-            {% for auction in user_auctions %}
-                <button value="0" class="auction-listing" id="auction_heading_{{ auction.auction_id }}" onclick="handleAuctionClick('{{ auction.auction_id }}')">{{ auction.auction_id }}</button>
-            {% endfor %}
         </div>
         <div class="col-md-8">
             {% for auction in user_auctions %}
