@@ -16,21 +16,22 @@ __Instructions for Running our Project:__
 Our project is built on Django. To run it, do the following:
 * Clone this repository
 * Navigate to the cloned repository's source directory.
-* Run 'python manage.py makemigrations'
-* Run 'python manage.py migrate'
-* Run 'python manage.py runserver'
+* Use pipenv: `$ pipenv shell`
+* Install dependancies `$ pipenv install --dev`
+* Run `python manage.py migrate`
+* Run `python manage.py runserver`
 * If you are given Django package errors, install the specified packages to continue.
 * Navigate to the URL specified in the console (Usually 127.0.0.1).
-* Feel free to make a superuser for access to the /admin/ URL workspace: 'python manage.py createsuperuser'
+* Feel free to make a superuser for access to the /admin/ URL workspace: `python manage.py createsuperuser`
     * You can create, modify, delete, view auction-related information at the admin control panel.
 * Let us know if you run into any issues.
 
 * Unit Testing:
     * Run 'python manage.py test'
     * If you want to see coverage report (not necessary to run the tests):
-        * 'pip install coverage'
-        * 'coverage run --source='.' manage.py test'
-        * 'coverage report'
+        * `pip install coverage`
+        * `coverage run --source="." manage.py test`
+        * `coverage report`
 
 
 __Project Completion__
