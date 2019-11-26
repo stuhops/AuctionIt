@@ -115,8 +115,17 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = reverse_lazy('auctions:profile')
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+# these settings controll emails
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp@gmail.com' 
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'auctionit2019.com' # our email account
+EMAIL_HOST_PASSWORD = 'hzjdfomnalwsvggt' # app password for email account
+EMAIL_USE_TLS = True # tls encryption
+
+# use these two lines for debugging to avoid email spam
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
