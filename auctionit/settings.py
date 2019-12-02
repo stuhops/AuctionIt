@@ -117,9 +117,10 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # these settings controll emails
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp@gmail.com' 
+EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'auctionit2019.com' # our email account
+EMAIL_HOST_USER = 'auctionit2019@gmail.com' # our email account
+DEFAULT_FROM_EMAIL = 'auctionit2019@gmail.com'
 EMAIL_HOST_PASSWORD = 'hzjdfomnalwsvggt' # app password for email account
 EMAIL_USE_TLS = True # tls encryption
 
