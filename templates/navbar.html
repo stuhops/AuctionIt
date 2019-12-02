@@ -31,7 +31,7 @@
                 <form class="form-inline ml-auto" method="post" action="{% url 'auctions:explore' %}">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn active" type="submit">Search</button>
+                    <button class="btn active" type="submit" href="{$ url 'auctions:explore' %}">Search</button>
                 </form>
             </div>
         </nav>
