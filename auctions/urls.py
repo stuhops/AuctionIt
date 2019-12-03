@@ -12,7 +12,8 @@ urlpatterns = [
     path('item/<int:item_pk>/', views.item, name='item'),
     path('codes/', views.codes, name='codes'), 
     path('explore/', views.explore, name='explore'),
-    path('live/', views.live, name='live')
+    path('live/', views.live, name='live'),
+    path('winners/', views.winners, name='winners'),
     # path('join_auction/', views.join_auction, name='join_auction'),
 ]
 

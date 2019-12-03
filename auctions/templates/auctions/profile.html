@@ -14,6 +14,11 @@
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'auctions:editProfile' %}">Edit Profile</a>
             </li>
+            {% if request.user.is_superuser %}
+            <li class="nav-item mt-2">
+              <a class="nav-link active" href="{% url 'auctions:winners' %}">View Winners List</a>
+            </li>
+            {% endif %}
           </ul>
           <h3>Recent Bids</h3>
           <ul class="nav nav-pills flex-column">

@@ -194,3 +194,12 @@ def join_auction(request):
 @login_required
 def live(request):
     return render(request, 'auctions/live.html', {"id": request.user.profile.pk})
+
+
+@login_required
+def winners(request):
+    if not request.user.is_superuser:
+        redirect('auctions:profile')
+    else:
+        item_list = Item.objects.filter(sold=True, hidden=False)
+        return render(request, 'auctions/winners.html', {"item_list": item_list})
