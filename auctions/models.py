@@ -89,6 +89,14 @@ class Item(models.Model):
 
         return self.sold
 
+    def isOpen(self):
+        if (timezone.now() - self.start_date).total_seconds() < 0:
+            return False
+        elif self.isSold():
+            return False
+        else:
+            return True
+
     def isActive(self):
         if self.auction.active:
             return True
