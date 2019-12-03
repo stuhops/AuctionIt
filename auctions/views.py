@@ -98,6 +98,10 @@ def item(request, item_pk):
             primary_image = image_list[0].getImageThumbnail
         else:
             primary_image = settings.MEDIA_URL + "/images/defaultItemImage.jpg"
+
+        messages.warning(request,
+                         'The bidding is currently closed for this item.'
+                         )
         return render(request, 'auctions/item.html', {
             'item': item,
             'bid_list': bid_list,
@@ -105,6 +109,7 @@ def item(request, item_pk):
             'image_list': image_list,
             'shuffled_auction': shuffled_auction,
             })
+
     else:
         if float(selected_bid) > item.current_price and not item.sold \
                                                     and not item.hidden:
