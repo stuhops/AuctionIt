@@ -78,10 +78,11 @@ class Item(models.Model):
         dif = self.end_date - timezone.now()
         if self.isSold():
             return "None"
+        if not self.isOpen():
+            return "Closed"
         else:
-            return "%s days, %s hours, %s minutes, and %s seconds" % \
-                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
-                    (dif.seconds//60)//60)
+            return "%s days, %s hours, and %s minutes" % \
+                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
 
     def isSold(self):
         if (self.end_date - timezone.now()).total_seconds() < 0:
@@ -89,6 +90,14 @@ class Item(models.Model):
             self.whoWon()
 
         return self.sold
+
+    def isOpen(self):
+        if (self.start_date - timezone.now()).total_seconds() > 0:
+            return False
+        elif self.isSold():
+            return False
+        else:
+            return True
 
     def isActive(self):
         if self.auction.active:
@@ -106,11 +115,21 @@ class Item(models.Model):
     def whoWon(self):
         try:
             winner = self.bid_set.order_by('-price')[0].bidder
+            self.current_price = self.bid_set.order_by('-price')[0].price
             # winner.setWon(self)
             return winner
         except (Exception):
             print(Exception)
             return None
+
+    def getPrice(self):
+        try:
+            self.current_price = self.bid_set.order_by('-price')[0].price
+            # winner.setWon(self)
+            return self.current_price
+        except (Exception):
+            print(Exception)
+            return self.current_price
 
     def __str__(self):
         return self.name
@@ -156,8 +175,13 @@ class Profile(models.Model):
     #         self.items_won.add(item)
     #     return
 
+    def get_name_and_pk(self):
+        return '%s - %s' % (self.pk, self.username)
+
+    User.add_to_class("__str__", get_name_and_pk)
+
     def __str__(self):
-        return self.name
+        return '%s - %s' % (self.name, self.pk)
 
 
 class Bid(models.Model):

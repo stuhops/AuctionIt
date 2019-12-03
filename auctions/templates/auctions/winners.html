@@ -1,0 +1,40 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Winners List{% endblock %}
+
+{% block body %}
+  
+  <div class="container mt-4">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>User</th>
+          <th>Id</th>
+          <th>Picked Up</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in item_list %}
+          <tr>
+            <td>{{ item }}</td>  
+            <td>{{ item.current_price }}</td>  
+            <td>{{ item.whoWon.username }}</td>  
+            <td>{{ item.whoWon.pk }}</td>  
+            <td>{{ item.picked_up }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}

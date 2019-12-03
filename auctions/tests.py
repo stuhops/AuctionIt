@@ -44,8 +44,7 @@ class ItemTestCase(TestCase):
         test_item = Item.objects.get(name="test_item2")
         dif = test_item.end_date - timezone.now()
         time = "%s days, %s hours, %s minutes, and %s seconds" % \
-                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60,
-                    (dif.seconds//60)//60)
+                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
         self.assertEqual(test_item.isSold(), False)
         self.assertEqual(test_item.getTimeDiff(),time)
 

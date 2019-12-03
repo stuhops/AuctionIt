@@ -14,6 +14,7 @@ django-stdimage = "*"
 phonenumbers = "*"
 django-widget-tweaks = "*"
 pillow = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.6"
