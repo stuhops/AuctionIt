@@ -82,8 +82,7 @@ def item(request, item_pk):
     for i in range(EXTRA):
         if len(shuffled_auction) > TOTAL or i >= len(shuffled_auction_extra):
             break
-        if not shuffled_auction_extra[i].isSold() \
-           and not shuffled_auction_extra[i].hidden \
+        if shuffled_auction_extra[i].isOpen() \
            and not shuffled_auction_extra[i].pk == item.pk:
             shuffled_auction.append(shuffled_auction_extra[i])
 
@@ -92,6 +91,11 @@ def item(request, item_pk):
         if item.isSold():
             raise KeyError("Item is sold")
     except (KeyError):
+        if not item.isOpen():
+            messages.warning(request,
+                             'Alert: The bidding is currently \
+                             closed for this item.'
+                             )
         bid_list = item.bid_set.order_by('-price')[:3]
         image_list = item.itemimage_set.order_by('pk')
         if len(image_list) > 0:
@@ -99,9 +103,6 @@ def item(request, item_pk):
         else:
             primary_image = settings.MEDIA_URL + "/images/defaultItemImage.jpg"
 
-        messages.warning(request,
-                         'Alert: The bidding is currently closed for this item.'
-                         )
         return render(request, 'auctions/item.html', {
             'item': item,
             'bid_list': bid_list,
@@ -111,7 +112,7 @@ def item(request, item_pk):
             })
 
     else:
-        if float(selected_bid) > item.current_price and not item.sold \
+        if float(selected_bid) > item.current_price and item.isOpen() \
                                                     and not item.hidden:
             bid = Bid(item=item, bidder=request.user, price=selected_bid,
                       date=datetime.datetime.now())
@@ -137,7 +138,6 @@ def editProfile(request):
                            instance=request.user.profile)
         if form.is_valid():
             form.save()
-            print("Saved")
             return redirect('auctions:profile')
 
     else:
@@ -173,7 +173,6 @@ def join_auction(request):
         form = JoinAuction(request.POST)  # A form bound to the POST data
         if form.is_valid():
             form.save()
-            print("saved")
             return redirect('auctions:explore')
         # if form.is_valid() and Auction.objects.get(slug=form.slug):
         #     request.user.profile.auctions.append(
@@ -201,5 +200,11 @@ def winners(request):
     if not request.user.is_superuser:
         redirect('auctions:profile')
     else:
-        item_list = Item.objects.filter(sold=True, hidden=False)
+        all_items = list(Item.objects.all())
+        item_list = list()
+
+        for item in all_items:
+            if item.isSold() and item.hidden is False:
+                item_list.append(item)
+
         return render(request, 'auctions/winners.html', {"item_list": item_list})
