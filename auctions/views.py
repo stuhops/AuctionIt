@@ -100,7 +100,7 @@ def item(request, item_pk):
             primary_image = settings.MEDIA_URL + "/images/defaultItemImage.jpg"
 
         messages.warning(request,
-                         'The bidding is currently closed for this item.'
+                         'Alert: The bidding is currently closed for this item.'
                          )
         return render(request, 'auctions/item.html', {
             'item': item,
