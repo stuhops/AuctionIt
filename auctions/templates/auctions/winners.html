@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Winners List{% endblock %}
+
+{% block body %}
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>User</th>
+        <th>Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in item_list %}
+        <tr>
+          <td>{{ item }}</td>  
+          <td>{{ item.current_price }}</td>  
+          <td>{{ item.whoWon }}</td>  
+          <td>{{ item.whoWon.pk }}</td>  
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
