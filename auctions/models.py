@@ -78,6 +78,8 @@ class Item(models.Model):
         dif = self.end_date - timezone.now()
         if self.isSold():
             return "None"
+        if not self.isOpen():
+            return "Closed"
         else:
             return "%s days, %s hours, and %s minutes" % \
                 (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
