@@ -10,8 +10,9 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/setup/', views.editProfile, name='editProfile'),
     path('item/<int:item_pk>/', views.item, name='item'),
-    path('codes', views.codes, name='codes'), 
-    path('explore', views.explore, name='explore'),
+    path('codes/', views.codes, name='codes'), 
+    path('explore/', views.explore, name='explore'),
+    path('live/', views.live, name='live')
     # path('join_auction/', views.join_auction, name='join_auction'),
 ]
 

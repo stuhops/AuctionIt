@@ -184,3 +184,8 @@ def join_auction(request):
         form = JoinAuction()
 
     return render(request, 'auctions/joinAuction.html', {"form": form})
+
+
+@login_required
+def live(request):
+    return render(request, 'auctions/live.html', {"id": request.user.profile.pk})
