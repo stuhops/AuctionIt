@@ -23,7 +23,7 @@ Our project is built on Django. To run it, do the following:
 * Run `$ python manage.py runserver`
 * If you are given Django package errors, install the specified packages to continue.
 * Navigate to the URL specified in the console (Usually 127.0.0.1).
-* Feel free to make a superuser for access to the /admin/ URL workspace: `python manage.py createsuperuser`
+* Feel free to make a superuser for access to the /admin/ URL workspace. This can only be done from the terminal: `$ python manage.py createsuperuser`
     * You can create, modify, delete, view auction-related information at the admin control panel.
 * Let us know if you run into any issues.
 
