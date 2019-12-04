@@ -18,9 +18,9 @@ Our project is built on Django. To run it, do the following:
 * Navigate to the cloned repository's source directory.
 * Ensure that Python version 3.6 is installed on your system.
 * Use pipenv: `$ pipenv shell`
-* Install dependancies `$ pipenv install --dev`
-* Run `python manage.py migrate`
-* Run `python manage.py runserver`
+* Install dependancies: `$ pipenv install --dev`
+* Run `$ python manage.py migrate`
+* Run `$ python manage.py runserver`
 * If you are given Django package errors, install the specified packages to continue.
 * Navigate to the URL specified in the console (Usually 127.0.0.1).
 * Feel free to make a superuser for access to the /admin/ URL workspace: `python manage.py createsuperuser`
