@@ -2,8 +2,10 @@ from django.test import TestCase
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from stdimage import JPEGField
 
-from .models import Auction, Category, Item, Profile, Bid, ItemImage
+from .models import Auction, Bid,Category, Item, ItemImage, Profile
 
 # Create your tests here.
 
@@ -79,33 +81,26 @@ class ProfileTestCase(TestCase):
         Item.objects.get(name="test_item2").sold=False
         Item.objects.get(name="test_item2").picked_up=False
         test_user = User(username="test_user",first_name="Test",last_name="User", email="test@testemail.com", password="password")
-        v = Profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
         test_user.save()
-        Profile.create_user_profile(test_user,"","no")
-        Profile.save_user_profile(test_user,"")
-        #test_user.profile(name="Test User", email="test@testemail.com",phone_number="+41524204242", user=test_user)
-        #Profile.objects.get(name="Test User").auctions.set(test_auction)
-
-
-    def test_create_user_profile(self):
-        test_profile = Profile.objects.get(email="test@testemail.com")
-        self.assertEqual(str(test_item), "Test User")
-
-    def test_save_user_profile(self):
-        test_profile = Profile.objects.get(email="test@testemail.com")
-        self.assertEqual(str(test_item), "Test User")
 
     def test_getImageThumbnail(self):
-        test_profile = Profile.objects.get(email="test@testemail.com")
-        self.assertEqual(str(test_item), "Test User")
+        test_profile = User.objects.get(username="test_user").profile
+        test_profile.image = ""
+        self.assertEqual(test_profile.getImageThumbnail(), "/media//images/defaultProfilePicture.jpg")
+        test_profile.image = "/media/"
+        self.assertEqual(test_profile.getImageThumbnail(), "/media/media/.thumbnail.jpeg")
 
     def test_set_bid_on(self):
-        test_profile = Profile.objects.get(email="test@testemail.com")
-        self.assertEqual(str(test_item), "Test User")
+        test_profile = User.objects.get(username="test_user").profile
+        test_item = Item.objects.get(name="test_item2")
+        test_profile.set_bid_on(test_item)
+        self.assertEqual(str(test_profile.bid_on.order_by("end_date")[0]), "test_item2")
 
     def test_profile_class(self):
-        test_profile = Profile.objects.get(email="test@testemail.com")
-        self.assertEqual(str(test_item), "Test User")
+        test_profile = User.objects.get(username="test_user").profile
+        test_profile = "test_user"
+        self.assertEqual(str(test_profile), "test_user")
+
 class BidTestCase(TestCase):
     def setUp(self):
         Auction.objects.create(auction_id="test_item1")
@@ -140,5 +135,5 @@ class ItemImageTestCase(TestCase):
 
     def test_ItemImage_class(self):
         test_item =Item.objects.get(name="test_item2")
-        test_item_image = ItemImage.objects.get(item=test_item)
+        test_item_image = ItemImage.objects.get(item=test_item, image= JPEGField())
         self.assertEqual(test_item_image.getImageThumbnail(), "test_item")
