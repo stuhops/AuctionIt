@@ -21,29 +21,31 @@ def profile(request):
     items_won_list = list()
     bid_on_list = list()
     user_items = request.user.profile.bid_on.order_by('end_date')
+    wonTotal = 0
+    wonItemsTotal = 0
 
     for item in user_items:
-        if item.isActive and not item.hidden:
+        if item.isActive() and not item.hidden:
             bid_on_list.append(item)
 
-            if item.isSold():
-                if item.whoWon() == request.user:
-                    items_won_list.append(item)
-                else:
-                    pass
+            if item.whoWon() == request.user:
+                wonTotal += item.getPrice()
 
-    # JAREN - CURRENTLY WORKING ON THIS
-    # # # # #
-    recentBidList = request.user.bid_set.order_by('-date')[:5]
+                if item.isSold():
+                    items_won_list.append(item)
+                    wonItemsTotal += 1
+
+    recentBidList = request.user.bid_set.order_by('-date')[:3]
 
     all_auctions_list = Auction.objects.filter().order_by('auction_id')
-    # all_auctions_list = request.user.auction_set.order_by('auction_id')
 
     context = {
         'all_auctions_list': all_auctions_list,
         'recentBidList': recentBidList,
         'items_won_list': items_won_list,
         'bid_on_list': bid_on_list,
+        'won_total': wonTotal,
+        'won_items_total': wonItemsTotal,
         }
 
     return render(request, 'auctions/profile.html', context)

@@ -20,7 +20,12 @@
             </li>
             {% endif %}
           </ul>
-          <h3>Recent Bids</h3>
+          <h3>Personal Bid Statistics</h3>
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item m-2">Total items winning: {{ won_items_total }} items</li>
+            <li class="nav-item m-2">Total spending: ${{ won_total }}</li>
+          </ul>
+          <h3 class="mt-2">Recent Bids</h3>
           <ul class="nav nav-pills flex-column">
             {% for bid in recentBidList %}
               <li class="nav-item">

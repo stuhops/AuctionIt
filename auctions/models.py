@@ -115,11 +115,21 @@ class Item(models.Model):
     def whoWon(self):
         try:
             winner = self.bid_set.order_by('-price')[0].bidder
+            self.current_price = self.bid_set.order_by('-price')[0].price
             # winner.setWon(self)
             return winner
         except (Exception):
             print(Exception)
             return None
+
+    def getPrice(self):
+        try:
+            self.current_price = self.bid_set.order_by('-price')[0].price
+            # winner.setWon(self)
+            return self.current_price
+        except (Exception):
+            print(Exception)
+            return self.current_price
 
     def __str__(self):
         return self.name
