@@ -18,6 +18,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auctions:profile' %}" >Profile</a>
                     </li>
+
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Site</a>
+                            <a class="dropdown-item" href="{% url 'auctions:winners' %}">Winners List</a>
+                        </div>
+                    </li>
+                    {% endif %}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'auctions:explore' %}">Explore</a>
                     </li>
