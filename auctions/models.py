@@ -175,8 +175,13 @@ class Profile(models.Model):
     #         self.items_won.add(item)
     #     return
 
+    def get_name_and_pk(self):
+        return '%s - %s' % (self.pk, self.username)
+
+    User.add_to_class("__str__", get_name_and_pk)
+
     def __str__(self):
-        return self.name
+        return '%s - %s' % (self.name, self.pk)
 
 
 class Bid(models.Model):
