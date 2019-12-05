@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
@@ -43,10 +43,14 @@ class ItemTestCase(TestCase):
     def test_getTimeDiff_class(self):
         test_item = Item.objects.get(name="test_item2")
         dif = test_item.end_date - timezone.now()
-        time = "%s days, %s hours, %s minutes, and %s seconds" % \
-                (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
-        self.assertEqual(test_item.isSold(), False)
+        time = "%s days, %s hours, and %s minutes" % (dif.days, dif.seconds // 3600, (dif.seconds//60) % 60)
         self.assertEqual(test_item.getTimeDiff(),time)
+
+    def test_isOpen(self):
+        test_item = Item.objects.get(name="test_item2")
+        self.assertEqual(test_item.isOpen(), True)
+        test_item.sold = True
+        self.assertEqual(test_item.isOpen(), False)
 
     def test_isSold(self):
         test_item = Item.objects.get(name="test_item2")
@@ -61,11 +65,15 @@ class ItemTestCase(TestCase):
 
     def test_getPrimaryImage(self):
         test_item = Item.objects.get(name="test_item2")
-        self.assertEqual(str(test_item), "test_item2")
+        self.assertEqual(str(test_item.getPrimaryImage()), "/media//images/defaultItemImage.jpg")
 
     def test_whoWon(self):
         test_item = Item.objects.get(name="test_item2")
         self.assertEqual(test_item.whoWon(), None)
+
+    def test_getPrice(self):
+        test_item = Item.objects.get(name="test_item2")
+        self.assertEqual(str(test_item.getPrice()), "420.69")
 
     def test_item_class(self):
         test_item = Item.objects.get(name="test_item2")
@@ -131,9 +139,23 @@ class ItemImageTestCase(TestCase):
         Item.objects.get(name="test_item2").sold=False
         Item.objects.get(name="test_item2").picked_up=False
         test_item =Item.objects.get(name="test_item2")
-        ItemImage.objects.create(item=test_item,image="")
+        ItemImage.objects.create(item=test_item,image="jpeg")
 
     def test_ItemImage_class(self):
         test_item =Item.objects.get(name="test_item2")
-        test_item_image = ItemImage.objects.get(item=test_item, image= JPEGField())
-        self.assertEqual(test_item_image.getImageThumbnail(), "test_item")
+        test_item_image = ItemImage.objects.get(item=test_item)
+        self.assertEqual(test_item_image.getImageThumbnail(), "/media/jpeg.jpeg")
+
+
+class ViewsTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_details(self):
+        response = self.client.get('/accounts/login/?next=/auctions/profile/')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('accounts/signup/')
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get('/accounts/login/?next=/auctions/profile/')
+        self.assertEqual(response.status_code, 200)
+    
