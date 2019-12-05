@@ -1,3 +1,15 @@
+** INFORMATION FOR MILESTONE 4:**
+
+Our project is complete! We believe we have satisfied every requirement for the auction system. 
+
+Additionally, we now have ~76% coverage for our unit tests. This is nearly the maximum possible coverage for our Django setup.
+
+If anything else is needed from us, please let us know!
+
+- Group 02
+
+----------
+
 **INFORMATION FOR MILESTONE 3:**
 
 __Unit Testing:__
