@@ -2,7 +2,7 @@
 
 Our project is complete! We believe we have satisfied every requirement for the auction system. 
 
-Additionally, we now have ~76% coverage for our unit tests. This is nearly the maximum possible coverage for our project's Django setup.
+Additionally, we now have ~76% coverage for our unit tests. This is nearly the maximum coverage possible for the major logic of our Django setup.
 
 If anything else is needed from us, please let us know!
 
