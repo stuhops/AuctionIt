@@ -30,10 +30,10 @@ def profile(request):
 
             if item.whoWon() == request.user:
                 wonTotal += item.getPrice()
+                wonItemsTotal += 1
 
                 if item.isSold():
                     items_won_list.append(item)
-                    wonItemsTotal += 1
 
     recentBidList = request.user.bid_set.order_by('-date')[:3]
 
